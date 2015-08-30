@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return $this->user->tellSomething();
+        // return $this->user->tellSomething();
     }
 
     /**

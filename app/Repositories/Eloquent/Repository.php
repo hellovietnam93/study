@@ -35,6 +35,12 @@ abstract class Repository implements RepositoryInterface
 	 */
 	abstract function model();
 
+	/**
+	 * Get all records of model instance
+	 * 
+	 * @param  array  $columns [description]
+	 * @return [type]          [description]
+	 */
 	public function all($columns = array('*'))
 	{
 		return $this->model->get($columns);
@@ -70,10 +76,10 @@ abstract class Repository implements RepositoryInterface
 		return $this->model->where($attribute, '=', $value)->first($columns);
 	}
 
-	public function tellSomething()
-	{
-		return 'Repository Text';
-	}
+	// public function tellSomething()
+	// {
+	// 	return 'Repository Text';
+	// }
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Builder
