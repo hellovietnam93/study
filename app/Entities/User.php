@@ -26,7 +26,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * 
      * @var mixed
      */
-    protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug']
+    protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
     
     /**
      * The attributes that are mass assignable.

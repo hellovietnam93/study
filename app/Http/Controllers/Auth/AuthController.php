@@ -2,7 +2,7 @@
 
 namespace studyhub\Http\Controllers\Auth;
 
-use studyhub\User;
+use studyhub\Entities\User;
 use Validator;
 use studyhub\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
