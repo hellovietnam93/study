@@ -21,9 +21,10 @@ class CreateUsersTable extends Migration
             $table->string('activation_token', 60)->nullable();
             $table->smallInteger('status');
             $table->integer('role_id');
+            $table->string('slug')->unique();
             // Columns for polymorphic relationship of User
-            $table->integer('userable_id');
-            $table->string('userable_type');
+            // $table->integer('userable_id');
+            // $table->string('userable_type');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use studyhub\Http\Requests;
 use studyhub\Http\Controllers\Controller;
 
+use studyhub\Repositories\Criteria\Users\ActivatedViaEmail;
 use studyhub\Repositories\Users\UserRepository as User;
 
-class UserController extends Controller
+class UsersController extends Controller
 {
     private $user;
 
@@ -18,6 +19,12 @@ class UserController extends Controller
         $this->user = $user;
     }
 
+    public function getActivatedUsers()
+    {
+        $this->user->pushCriteria(new ActivatedViaEmail());
+        return dd($this->user->all());
+    }
+    
     /**
      * Display a listing of the resource.
      *

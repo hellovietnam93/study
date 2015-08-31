@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test', 'User\UserController@index');
+Route::get('test', 'User\UsersController@getActivatedUsers');

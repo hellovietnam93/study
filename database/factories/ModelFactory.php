@@ -11,11 +11,14 @@
 |
 */
 
-$factory->define(studyhub\User::class, function ($faker) {
+$factory->define(studyhub\Entities\User::class, function ($faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
-        'password' => str_random(10),
+        'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+        'activation_token' => str_random(60),
+        'status' => 0,
+        'role_id' => 0
     ];
 });
