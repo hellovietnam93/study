@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->string('activation_token', 60)->nullable();
+            $table->string('activation_code', 100)->nullable();
             $table->smallInteger('status');
             // $table->integer('role_id');
             $table->string('slug')->unique();
@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->integer('profile_id')->unique();
             $table->rememberToken();
             $table->timestamps();
+            $table->boolean('active')->default(false);
+            $table->softDeletes();
         });
     }
 

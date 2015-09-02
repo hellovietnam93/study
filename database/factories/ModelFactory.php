@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(studyhub\Entities\User::class, function ($faker) {
+$factory->define(studyhub\Entities\Users\User::class, function ($faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,

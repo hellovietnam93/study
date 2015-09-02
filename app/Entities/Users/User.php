@@ -9,38 +9,23 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use studyhub\Entities\Presenters\Traits\PresentableTrait;
+use studyhub\Entities\Presenters\Contracts\PresentableInterface;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface
 {
-    use Authenticatable, CanResetPassword, SluggableTrait;
+    use Authenticatable, CanResetPassword, SluggableTrait, SoftDeletes, EntrustUserTrait, PresentableTrait;
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
     protected $table = 'users';
-
-    /**
-     * Unique slug for each user
-     * 
-     * @var mixed
-     */
+    protected $dates = ['deleted_at'];
+    protected $casts = ['active' => 'boolean'];
+    protected $presenter = \studyhub\Entities\Presenters\UserPresenter::class;
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
-    
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'email', 'password', 'slug', 'status'];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token', 'activation_token'];
+    protected $fillable = ['name', 'email', 'password', 'slug', 'status',
+    'activation_code', 'active'];
+    protected $hidden = ['password', 'remember_token', 'activation_code'];
 
     /**
      * A studyhub user can be a student, a lecturer, a staff, etc.
@@ -49,6 +34,21 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function userable()
     {
         return $this->morphTo();
+    }
+
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function getRouteKey()
+    {
+        return $this->slug;
     }
 
     /**

@@ -14,8 +14,7 @@ return [
     | Supported: "smtp", "mail", "sendmail", "mailgun", "mandrill", "ses", "log"
     |
     */
-
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAILGUN_DRIVER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +27,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAILGUN_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +40,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+    'port' => env('MAILGUN_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +53,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'ngocvinh.nnv@gmail.com', 'name' => 'Administrator'],
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +66,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAILGUN_ENCRYPTION', 'tls'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +79,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => env('MAILGUN_USERNAME'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +92,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => env('MAILGUN_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------

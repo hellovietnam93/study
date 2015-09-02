@@ -1,0 +1,17 @@
+body {
+  font: normal 15px "Source Sans Pro", sans-serif;
+  color: #525252;
+  position: relative;
+  -webkit-font-smoothing: antialiased; }
+
+a:hover, a:active, a:focus {
+  text-decoration: none; }
+
+.form-error-text {
+  font-size: 11px;
+  color: #c7254e; }
+
+.control-label {
+  font-size: 13px; }
+
+/*# sourceMappingURL=app.css.map */

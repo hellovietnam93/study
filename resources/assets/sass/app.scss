@@ -1,2 +1,25 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+body {
+    font: normal 15px "Source Sans Pro", sans-serif;
+    color: #525252;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    &:hover, &:active, &:focus {
+        text-decoration: none;
+    }
+}
+
+.form-error-text {
+    font-size: 11px;
+    color: #c7254e;
+}
+
+.control-label {
+    font-size: 13px;
+}
+
 
