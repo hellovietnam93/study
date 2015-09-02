@@ -1,0 +1,27 @@
+.wrapper {
+	margin-top: 50px;	/* distance away from fixed-top navbar */
+}
+
+.c-indicator {
+	border: 1px solid #ddd;
+}
+
+/*
+ |-------------------------------------
+ | Global Navbar
+ |-------------------------------------  
+ */
+.shglb-navbar {
+	position: fixed;
+	top:0;
+	right:0;
+	left:0;
+	display: block;
+	z-index: 1050;
+}
+
+.shglb-navbar #glbNavbarClassList {
+	padding-left: 30px;
+}
+
+/*-- End Global Navbar --*/

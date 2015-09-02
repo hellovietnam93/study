@@ -1,0 +1,19 @@
+/**
+ * Styles for Sidebar element
+ */
+.sidebar {
+	position: fixed;
+	top: 50px !important;
+	right:0;
+	bottom: 0;
+	display: block;
+	width: 250px;
+}
+
+.noti {
+	display: table;
+}
+
+.noti-thumbnail, .noti-content {
+	display: table-cell;
+}
