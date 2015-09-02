@@ -1,6 +1,6 @@
 <?php
 
-namespace studyhub\Entities;
+namespace studyhub\Entities\Users;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -33,7 +33,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'slug'];
+    protected $fillable = ['name', 'email', 'password', 'slug', 'status'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -41,4 +41,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token', 'activation_token'];
+
+    /**
+     * A studyhub user can be a student, a lecturer, a staff, etc.
+     * This gets all of the owning userable models.
+     */
+    public function userable()
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * Each user has a profile
+     * @return [type] [description]
+     */
+    public function profile()
+    {
+        return $this->hasOne('studyhub\Entities\Users\UserProfile');
+    }
 }

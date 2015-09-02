@@ -14,7 +14,7 @@ class UserRepository extends Repository
 	 */
 	function model()
 	{
-		return 'studyhub\Entities\User';
+		return 'studyhub\Entities\Users\User';
 	}
 
 	public function tellSomething()

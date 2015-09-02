@@ -20,11 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->string('activation_token', 60)->nullable();
             $table->smallInteger('status');
-            $table->integer('role_id');
+            // $table->integer('role_id');
             $table->string('slug')->unique();
             // Columns for polymorphic relationship of User
-            // $table->integer('userable_id');
-            // $table->string('userable_type');
+            $table->integer('userable_id');
+            $table->string('userable_type');
+            $table->integer('profile_id')->unique();
             $table->rememberToken();
             $table->timestamps();
         });
