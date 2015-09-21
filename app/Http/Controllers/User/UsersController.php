@@ -24,7 +24,7 @@ class UsersController extends Controller
         $this->user->pushCriteria(new ActivatedViaEmail());
         return dd($this->user->all());
     }
-    
+
     /**
      * Display a listing of the resource.
      *

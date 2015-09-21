@@ -41,6 +41,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->active;
     }
 
+    public function isAdmin()
+    {
+        return $this->hasRole(['admin', 'owner']);
+    }
+
+    public function isLecturer()
+    {
+        return $this->hasRole(['lecturer']);
+    }
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);

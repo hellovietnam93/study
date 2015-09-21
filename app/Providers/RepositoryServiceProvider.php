@@ -33,6 +33,16 @@ class RepositoryServiceProvider extends ServiceProvider
             \studyhub\Repositories\User\UserRepositoryInterface::class,
             \studyhub\Repositories\User\EloquentUserRepository::class
         );
+
+        $this->app->singleton(
+            \studyhub\Repositories\Course\CourseRepositoryInterface::class,
+            \studyhub\Repositories\Course\EloquentCourseRepository::class
+        );
+
+        $this->app->singleton(
+            \studyhub\Repositories\StudyClass\StudyClassRepositoryInterface::class,
+            \studyhub\Repositories\StudyClass\EloquentStudyClassRepository::class
+        );
     }
 
     /**
@@ -44,6 +54,8 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         return [
             \studyhub\Repositories\User\UserRepositoryInterface::class,
+            \studyhub\Repositories\Course\CourseRepositoryInterface::class,
+            \studyhub\Repositories\StudyClass\StudyClassRepositoryInterface::class,
         ];
     }
 }

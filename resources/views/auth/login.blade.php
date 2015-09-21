@@ -20,7 +20,7 @@
             <li class="nav-item">
                 <a href="{{ route('auth::register') }}" class="btn btn-success">Tạo tài khoản</a>
             </li>
-        </ul>   
+        </ul>
     </nav>
     <!-- End NAVBAR -->
     <!-- CONTENT -->
@@ -62,7 +62,7 @@
                                             <span class="c-indicator"></span> Ghi nhớ đăng nhập
                                         </label>
                                     </div>
-                                    <a href="#" class="card-link">Quên mật khẩu</a>
+                                    <a href="{{ url('auth/password/email') }}" class="card-link">Quên mật khẩu</a>
                                     <button type="submit" class="btn btn-primary pull-right">Đăng nhập</button>
                                     <div class="clearfix"></div>
                                 </form>

@@ -1,0 +1,111 @@
+<?php
+
+namespace studyhub\Repositories\StudyClass;
+
+use studyhub\Entities\Classes\StudyClass;
+use studyhub\Entities\Courses\Course;
+use studyhub\Repositories\EloquentRepository;
+
+class EloquentStudyClassRepository extends EloquentRepository implements StudyClassRepositoryInterface
+{
+    protected $model;
+
+    public function __construct(StudyClass $model)
+    {
+        $this->model = $model;
+    }
+
+    public function create(array $data, $courseID)
+    {
+        return $this->model->create([
+            'id' => $data['id'],
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'course_id' => $courseID
+        ]);
+    }
+
+    public function update(array $data, $courseID, $id)
+    {
+        $course = Course::find($courseID);
+
+        $StudyClass = $this->findClassByCourse($course, $id);
+        $StudyClass->update($data);
+
+        return $StudyClass;
+    }
+
+    public function restore($slug)
+    {
+        $Course = $this->findDisabledCourseBySlug($slug);
+        $Course->restore();
+    }
+
+    public function softDelete($courseID, $id)
+    {
+        $course = Course::find($courseID);
+
+        $StudyClass = $this->findClassByCourse($course, $id);
+        $StudyClass->delete();
+    }
+
+    public function forceDelete($slug)
+    {
+        $Course = $this->findDisabledCourseBySlug($slug);
+        $Course->tasks()->withTrashed()->forceDelete();
+        $Course->profile()->withTrashed()->forceDelete();
+        $Course->forceDelete();
+    }
+
+    public function fetchDisabledCourses($limit)
+    {
+        return $this->model
+            ->onlyTrashed()
+            ->latest('deleted_at')
+            ->paginate($limit);
+    }
+
+    public function findDisabledCourseBySlug($slug)
+    {
+        return $this->model
+            ->onlyTrashed()
+            ->where('slug', $slug)
+            ->firstOrFail();
+    }
+
+    public function fetchCourseUrgentClasses($course)
+    {
+        return $this->model->where('course_id', $course->id)->get();
+    }
+
+    public function findOrCreateNew(array $CourseData, $authProvider)
+    {
+        $Course = $this->model
+            ->where('auth_provider_id', $CourseData['auth_provider_id'])
+            ->first();
+        $CourseExisted = $this->model
+            ->where('email', $CourseData['email'])
+            ->first();
+        if (!$Course && $CourseExisted) {
+            return false;
+        }
+        if (!$Course) {
+            $Course = $this->model->create($CourseData);
+            $Course->update([
+                'auth_provider' => $authProvider,
+                'active' => true,
+                'activation_code' => '',
+            ]);
+        }
+
+        return $Course;
+    }
+
+    public function findClassByCourse($course, $id)
+    {
+        return $this->model
+                    ->where('course_id', $course->id)
+                    ->where('id', $id)
+                    ->firstOrFail();
+    }
+}

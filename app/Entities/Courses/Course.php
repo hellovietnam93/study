@@ -3,17 +3,14 @@
 namespace studyhub\Entities\Courses;
 
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Course extends Model implements SluggableInterface
+class Course extends Model
 {
-    use SluggableTrait, SoftDeletes;
+    use SoftDeletes;
 
     protected $table = 'courses';
 
-    protected $sluggable = ['build_from' => 'name', 'save_to', 'slug'];
 
     protected $fillable = [
     	'id', 'name', 'description', 'credit', 'credit_fee', 'theory_duration',

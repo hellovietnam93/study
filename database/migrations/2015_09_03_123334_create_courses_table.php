@@ -27,6 +27,8 @@ class CreateCoursesTable extends Migration
             $table->string('coures_group')->nullable();
             $table->string('language', 5)->nullable();
             $table->text('evaludation')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
 
             $table->primary('id');
         });

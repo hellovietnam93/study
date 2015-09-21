@@ -15,7 +15,7 @@ class StudyClass extends Model
 
     protected $fillable = [
     	'id', 'name', 'type', 'description', 'semester',
-    	'max_student', 'registered_student'
+    	'max_student', 'registered_student', 'course_id'
     ];
 
     /**
