@@ -17,10 +17,19 @@ class EloquentCourseRepository extends EloquentRepository implements CourseRepos
     public function create(array $credentials)
     {
         return $this->model->create([
+            'id' => $credentials['id'],
             'name' => $credentials['name'],
-            'email' => $credentials['email'],
-            'password' => $credentials['password'],
-            'activation_code' => str_random(100),
+            'description' => $credentials['description'],
+            'credit' => $credentials['credit'],
+            'credit_fee' => $credentials['credit_fee'],
+            'theory_duration' => $credentials['theory_duration'],
+            'exercise_duration' => $credentials['exercise_duration'],
+            'practice_duration' => $credentials['practice_duration'],
+            'weight' => $credentials['weight'],
+            'en_name' => $credentials['en_name'],
+            'abbr_name' => $credentials['abbr_name'],
+            'language' => $credentials['language'],
+            'evaludation' => $credentials['evaludation']
         ]);
     }
 

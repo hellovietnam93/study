@@ -1,72 +1,64 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <!-- Required meta tags always come first -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-  <title>Tất cả môn học | StudyHub - Hệ thống Hỗ trợ Học tập, Giảng dạy -
-      Trường Đại học Bách Khoa Hà Nội</title>
-
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
-</head>
-<body>
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-fixed-top navbar-dark bg-primary bg-faded">
-    <a href="{{ route('home') }}}" class="navbar-brand">StudyHub</a>
-    <ul class="nav navbar-nav navbar-right pull-right">
-      @if (auth()->guest())
-        <li><a href="{{ route('auth::login') }}">Log In</a></li>
-        <li><a href="{{ route('auth::register') }}">Sign Up</a></li>
-      @else
-        <li>
-            {{ $authUser->name }}
-        </li>
-        <li>
-            <a href="{{ route('auth::logout') }}" class="navbar-brand">Log out</a>
-        </li>
-      @endif
-    </ul>
-  </nav>
-  <!-- End NAVBAR -->
-  <!-- CONTENT -->
-  <div class="wrapper" id="authPage">
-    <div class="container">
+@extends('layouts.lecturer')
+@section('title', 'Tất cả môn học | StudyHub - Hệ thống Hỗ trợ Học tập, Giảng dạy -
+  Trường Đại học Bách Khoa Hà Nội')
+@section('content')
+  @if (auth()->guest())
+    sida
+  @else
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-md-9">
-          <div class="course">
-            <table class="table table-bordered table-hover">
-              @include('lecturer.courses._header')
+        <div class="pagelet-header">
+          <div class="pagelet-title-wrapper pagelet-header-component">
+            <h3 class="pagelet-title">Các lớp học trong kỳ 20151</h3>
+          </div>
+          <!-- <div class="header-btn"><button class="btn btn-success" id="createCourse">Tạo lớp học mới</button></div> -->
+          <div class="pagelet-header-menu-wrapper pagelet-header-component">
+            <button class="btn shbtn-default shbtn-slim popoverable" id="addTeachingClass" type="button" data-popover="#initializeCreateNewClass">Thêm lớp giảng dạy</button>
+
+            <button class="btn shbtn-default shbtn-slim" id="createNewCreate"
+              type="button" data-popover="#initializeCreateNewClass">
+              <a href="{{ route('lecturer::course.create') }}">Tạo lớp học mới</a>
+            </button>
+          </div>
+          <div class="pagelet-header-control-wrapper pagelet-header-component">
+            <div class="pagelet-controls">
+              <div class="pagelet-control"><i class="glyphicon glyphicon-th-list"></i></div>
+              <div class="pagelet-control active"><i class="glyphicon glyphicon-th"></i></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="pagelet-content">
+          <!-- Class list -->
+          <div class="row grid-view">
+            <div class="row-eq-height">
               @foreach($courses as $course)
                 @include('lecturer.courses._course')
               @endforeach
-            </table>
+            </div>
           </div>
-          <a href="{{ route('lecturer::course.create') }}">
-            New course
-          </a>
-        </div>
-        <div class="col-md-3">
-          <div class="card auth-card">
-            {!! Form::open() !!}
-              <div class="form-group">
-                {!! Form::file(null, null, ['class' => 'form-control input-lg']) !!}
+          <!-- End Class list -->
+        </div> <!-- ./pagelet-content -->
+      </div>
+      <div class="wrapper" id="authPage">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-md-3">
+              <div class="card auth-card">
+                @include('lecturer.courses._uploads')
               </div>
-              <div class="form-group">
-                {!! Form::submit('Upload', ['class' => 'btn btn-primary']) !!}
-              </div>
-            {!! Form::close() !!}
+            </div>
           </div>
         </div>
       </div>
     </div>
+  @endif
+@stop
+@section('footer')
+  <div class="pagelet-footer">
+    <span class="system-info">StudyHub - Hệ thống hỗ trợ Học tập - Giảng dạy Trường Đại học Bách Khoa Hà Nội</span>
   </div>
-  <!-- End CONTENT -->
-  <!-- jQuery first, then Bootstrap JS. -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+@stop

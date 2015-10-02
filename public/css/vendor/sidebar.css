@@ -1,0 +1,188 @@
+.sidebar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;	
+	background: #f3f3f3;
+	border-left: 1px solid #ddd;
+	box-shadow: 1px 0px 8px rgba(0,0,0,0.10);
+}
+
+.sidebar-component {
+	border-top: 1px solid #ddd;	
+}
+
+.component-header {
+	background-color: #eee;
+	padding: 4px;
+}
+.component-header > span {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 12px;
+}
+.collapse-component {
+	cursor: pointer;
+}
+
+.mini-calendar {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	display: block;
+	width: 100%;
+	margin: 0;
+}
+
+/**
+ * custom styles for jQuery Datepicker
+ * for mini calendar
+ */
+
+.ui-datepicker {
+	padding: 0;	/* make calendar to occupy full width of the sidebar*/
+	width: 100%;
+}
+
+/* -- Calendar header (days of week) --*/
+.ui-datepicker-calendar {
+	border-top: 1px solid #d6dadc;
+	border-bottom: 1px solid #d6dadc;
+}
+
+/* Padding for days of week */
+.ui-datepicker th {
+	padding: .4em .2em;
+}
+
+.ui-datepicker thead {
+	background: linear-gradient(to bottom,#fff 0,#edeff0 100%);
+	border-bottom: 1px solid #d6dadc;
+}
+
+.ui-datepicker thead tr th {
+	border-right: 1px solid #d6dadc;
+}
+
+/*.ui-datepicker thead tr th:last-child {
+	border-right: none;
+}*/
+
+.ui-datepicker td a {
+	display: block;
+	padding: .4em;
+	text-align: center;
+	text-decoration: none;
+	color: #636363;
+}
+
+/* Date of current month */
+.ui-datepicker-calendar > tbody > tr > td:not(.ui-datepicker-other-month) {
+	background-color: #fff;
+}
+
+.ui-datepicker-calendar > tbody > tr > td:not(.ui-datepicker-other-month):hover {
+	background-color: #f3f3f3;
+}
+
+/* Border for all cells in calendar */
+.ui-datepicker-calendar td {
+	border: 1px solid #d6dadc;
+}
+
+/* Current day in calendar */
+.ui-datepicker-current-day {
+    color: #8bbdd9 !important;
+	background-color: #e4f0f6 !important;
+}
+
+.ui-datepicker-current-day a {
+    color: #0084ff !important;
+    font-weight: bold;
+}
+
+/**
+ * activity
+ */
+.activity-list {
+	position: relative;
+	overflow: visible;
+	display: block;
+	width: 100%;
+	min-height: 100px;
+}
+
+.activity-list:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.sidebar-component.activity-list .component-body {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	top: 30px;
+	overflow: hidden;
+}
+
+.activities {
+	display: block;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.activity {
+	min-height: 18px;
+	width: 100%;
+	display: table;
+	margin-left: 4px;
+	margin-right: 4px;
+	padding: 4px;
+	border-bottom: 1px solid #ddd;
+	vertical-align: top;
+}
+
+.activity:hover {
+	cursor: pointer;
+	background-color: #efefef;
+}
+
+.activity .creator,
+.activity .activity-desc {
+	display: table-cell;
+}
+
+.activity .activity-content,
+.activity .activity-meta {
+	display: inline;
+	margin-right: 4px;
+}
+
+.activity .creator {
+	max-width: 40px;
+	padding-top: 4px;
+}
+
+.activity .member-avatar {
+	width: 36px;
+	height: 36px;
+	border-radius: 3px;
+}
+
+.activity .activity-desc {
+	font-size: 12px;
+	padding-left: 5px;
+	vertical-align: top;
+	word-wrap: break-word;
+}
+
+.activity .inline-member {
+	font-weight: bold;
+}
+
+.activity .activity-meta {
+	color: #888;
+}

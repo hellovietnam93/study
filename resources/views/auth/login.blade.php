@@ -1,82 +1,95 @@
 <!DOCTYPE html>
-<html lang="vi">
-<head>
-    <!-- Required meta tags always come first -->
+ <html>
+  <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>StudyHub | Đăng nhập</title>
 
-    <title>Đăng nhập | StudyHub - Hệ thống Hỗ trợ Học tập, Giảng dạy - Trường Đại học Bách Khoa Hà Nội</title>
+    <!-- Bootstrap -->
+    <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
-</head>
-<body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-fixed-top navbar-dark bg-primary bg-faded">
-        <a href="{{ route('home') }}}" class="navbar-brand">StudyHub</a>
-        <ul class="nav navbar-nav pull-right">
-            <li class="nav-item">
-                <a href="{{ route('auth::register') }}" class="btn btn-success">Tạo tài khoản</a>
-            </li>
-        </ul>
-    </nav>
-    <!-- End NAVBAR -->
-    <!-- CONTENT -->
-    <div class="wrapper" id="authPage">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="card auth-card">
-                        <div class="card-block">
-                            <h4 class="card-title">Đăng nhập</h4>
-                            @if (count($errors) > 0)
-                            <div class="alert alert-danger" role="alert">
-                                <p><strong>Oops!!</strong> Đã có lỗi xảy ra khi đăng nhập</p>
-                                <ul>
-                                @foreach($errors as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                                </ul>
-                            </div>
-                            @endif
-                            <!-- <h6 class="card-subtitle text-muted">Xin vui lòng điền thông tin đăng nhập</h6> -->
-                        </div>
-                        <div class="card-block">
-                            <!-- Login form -->
-                            <div class="form">
-                                <form action="{{ route('auth::login') }}" method="post">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <fieldset class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" name="email" placeholder="Email" required>
-                                    </fieldset>
-                                    <fieldset class="form-group">
-                                        <label for="password">Mật khẩu</label>
-                                        <input type="password" class="form-control" name="password" placeholder="Mật khẩu" required>
-                                    </fieldset>
-                                    <div class="checkbox">
-                                        <label class="c-input c-checkbox">
-                                            <input type="checkbox" name="remember">
-                                            <span class="c-indicator"></span> Ghi nhớ đăng nhập
-                                        </label>
-                                    </div>
-                                    <a href="{{ url('auth/password/email') }}" class="card-link">Quên mật khẩu</a>
-                                    <button type="submit" class="btn btn-primary pull-right">Đăng nhập</button>
-                                    <div class="clearfix"></div>
-                                </form>
-                            </div>
-                            <!-- End Login form -->
-                        </div>
-                    </div>
-                </div>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="single-page">
+      <div class="container">
+        <!-- Logo -->
+        <div class="row">
+          <div class="sgpage-header">
+            <div class="page-header" id="logo">
+              <div class="header-image">
+                {!! Html::image('img/logo-inversed.png', 'StudyHub') !!}
+              </div>
+              <div class="header-button">
+                <a href="{{ route('auth::register') }}" class="btn shbtn-success pull-right">Tạo tài khoản mới</a>
+              </div>
             </div>
+          </div>
         </div>
+        <!-- Login form -->
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4 ">
+            <div class="auth-form" id="login">
+              <form action="" method="post" accept-charset="UTF-8">
+                <input type="hidden" name="_token" value="">
+                <div class="auth-form-header">
+                  <h1>Đăng nhập</h1>
+                </div>
+                <div class="auth-form-body">
+                  <div class="form-group">
+                    @if (count($errors) > 0)
+                      <div class="alert alert-danger" role="alert" id="login-error">
+                        <p><strong>Oops!!</strong> Đã có lỗi xảy ra khi đăng nhập</p>
+                        <ul>
+                          @foreach($errors as $error)
+                            <li>{{ $error }}</li>
+                          @endforeach
+                        </ul>
+                      </div>
+                    @endif
+                  </div>
+                  <div class="form">
+                    <form action="{{ route('auth::login') }}" method="post">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="email" autocapitalize="off" autocorrect="off" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="form-control" name="password" autocapitalize="off" autocorrect="off" placeholder="Mật khẩu">
+                      </div>
+                      <div class="form-group">
+                        <div class="col-md-6">
+                          <div class="auth-remember">
+                            <input type="checkbox" name="remember"> <span>Ghi nhớ đăng nhập</span>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <button type="submit" name="submit" class="btn btn-primary pull-right">Đăng nhập</button>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="form-group">
+                        <div class="auth-forgot-password">
+                          <p>
+                            <a href="{{ url('auth/password/email') }}">Quên mật khẩu</a>
+                          </p>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- End CONTENT -->
-    <!-- jQuery first, then Bootstrap JS. -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+    <script src="{{ elixir('js/all.js') }}"></script>
+  </body>
+ </html>

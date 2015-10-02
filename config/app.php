@@ -152,6 +152,7 @@ return [
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -203,7 +204,7 @@ return [
         'Html'      => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
-
+        'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

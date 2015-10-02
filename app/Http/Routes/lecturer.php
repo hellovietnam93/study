@@ -6,10 +6,9 @@ Route::group(['middleware' => ['auth', 'valid.roles:lecturer'], 'prefix' => 'lec
   //   Route::delete('{class}', ['as' => '.delete', 'uses' => 'StudyClassesController@softDelete']);
   // });
 
-  // Route::group(['prefix' => 'course', 'as' => 'course'], function () {
-  //   Route::get('uploads', ['as' => '.upload', 'uses' => 'CoursesController@getUpload']);
-  //   Route::post('uploads', ['as' => '.upload', 'uses' => 'CoursesController@postUpload']);
-  // });
+  Route::group(['prefix' => 'course', 'as' => 'course'], function () {
+    Route::post('uploads', ['as' => '.upload', 'uses' => 'CourseUploadsController@store']);
+  });
 });
 
 Route::group(['middleware' => ['auth', 'valid.roles:lecturer'], 'prefix' => 'lecturer',

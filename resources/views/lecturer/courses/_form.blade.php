@@ -59,9 +59,9 @@
   {!! error_text($errors, 'language') !!}
 </div>
 <div class="form-group summernote-container">
-  {!! Form::label('evaluation', 'Evaluation', ['class' => 'control-label']) !!}
-  {!! Form::textarea('evaluation', null, ['id' => 'summernote', 'class' => 'form-control']) !!}
-  {!! error_text($errors, 'evaluation') !!}
+  {!! Form::label('evaludation', 'Evaluation', ['class' => 'control-label']) !!}
+  {!! Form::textarea('evaludation', null, ['id' => 'summernote', 'class' => 'form-control']) !!}
+  {!! error_text($errors, 'evaludation') !!}
 </div>
 <div class="form-group pull-right">
   {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}

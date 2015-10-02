@@ -16,7 +16,8 @@
         "iron-io/iron_mq": "~2.0",
         "laracasts/utilities": "~2.0",
         "bugsnag/bugsnag-laravel": "1.*",
-        "laravelcollective/html": "5.1.*"
+        "laravelcollective/html": "5.1.*",
+        "maatwebsite/excel": "~2.0.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

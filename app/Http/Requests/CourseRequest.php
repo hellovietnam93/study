@@ -24,7 +24,7 @@ class CourseRequest extends Request
             'en_name' => 'required',
             'abbr_name' => 'required',
             'language' => 'required',
-            'evaluation' => 'required'
+            'evaludation' => 'required'
         ];
     }
 }

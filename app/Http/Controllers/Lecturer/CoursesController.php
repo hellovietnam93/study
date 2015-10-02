@@ -46,7 +46,7 @@ class CoursesController extends Controller
 
     public function store(CourseRequest $request)
     {
-        $course = $this->course->create($request->except(['_token', '_method']));
+        $course = $this->courseRepo->create($request->except(['_token', '_method']));
         // event(new TaskHasPublished($author, $task));
         flash()->success(trans('controller.course_created'));
 
