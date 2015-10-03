@@ -9,12 +9,11 @@ use studyhub\Jobs\ImportCourseCSV;
 
 class CourseUploadsController extends Controller
 {
-
-    public function store()
-    {
-        $path = public_path() . '/uploads';
-        $this->dispatch(new ImportCourseCSV('csv-file', $path));
-        flash()->success("Importing process completed.");
-        return back();
-    }
+  public function store()
+  {
+    $path = public_path() . '/uploads';
+    $this->dispatch(new ImportCourseCSV('csv-file', $path));
+    flash()->success("Importing process completed.");
+    return back();
+  }
 }
