@@ -65,8 +65,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * Each user has a profile
      * @return [type] [description]
      */
-    public function profile()
-    {
-        return $this->hasOne('studyhub\Entities\Users\UserProfile');
-    }
+    // public function profile()
+    // {
+    //     return $this->hasOne('studyhub\Entities\Users\UserProfile');
+    // }
 }

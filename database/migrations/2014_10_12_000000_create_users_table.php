@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             // Columns for polymorphic relationship of User
             $table->integer('userable_id');
             $table->string('userable_type');
-            $table->integer('profile_id')->unique();
+            $table->integer('profile_id');
             $table->rememberToken();
             $table->timestamps();
             $table->boolean('active')->default(false);

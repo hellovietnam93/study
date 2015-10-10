@@ -3,6 +3,7 @@
 namespace studyhub\Repositories\User;
 
 use studyhub\Entities\Users\User;
+use studyhub\Entities\Role;
 use studyhub\Repositories\EloquentRepository;
 
 class EloquentUserRepository extends EloquentRepository implements UserRepositoryInterface
@@ -100,5 +101,10 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
         }
 
         return $user;
+    }
+
+    public function findLecturer()
+    {
+        return $user = Role::find(2)->users()->get();
     }
 }

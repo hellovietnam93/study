@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.lecturer')
 @section('title', 'New Class')
 @section('content')
   <div class="row">

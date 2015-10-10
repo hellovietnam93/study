@@ -15,7 +15,7 @@ class StudyClass extends Model
 
     protected $fillable = [
     	'id', 'name', 'type', 'description', 'semester',
-    	'max_student', 'registered_student', 'course_id'
+    	'max_student', 'registered_student', 'course_id', 'enroll_key', 'user_id'
     ];
 
     /**
@@ -25,5 +25,10 @@ class StudyClass extends Model
     public function course()
     {
     	return $this->belongsTo('studyhub\Entities\Courses\Course');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('studyhub\Entities\Users\User');
     }
 }

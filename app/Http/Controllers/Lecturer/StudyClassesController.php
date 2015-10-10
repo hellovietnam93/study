@@ -8,16 +8,18 @@ use studyhub\Http\Requests;
 use studyhub\Http\Controllers\Controller;
 use studyhub\Repositories\Course\CourseRepositoryInterface as CourseRepo;
 use studyhub\Repositories\StudyClass\StudyClassRepositoryInterface as StudyClassRepo;
+use studyhub\Repositories\User\UserRepositoryInterface as UserRepo;
 use studyhub\Http\Requests\ClassRequest;
 use studyhub\Entities\Courses\Course;
 class StudyClassesController extends Controller
 {
     protected $studyclassRepo, $courseRepo;
 
-    public function __construct(CourseRepo $courseRepo, StudyClassRepo $studyclassRepo)
+    public function __construct(CourseRepo $courseRepo, StudyClassRepo $studyclassRepo, UserRepo $userRepo)
     {
         $this->courseRepo = $courseRepo;
         $this->studyclassRepo = $studyclassRepo;
+        $this->userRepo = $userRepo;
         $this->middleware('auth');
 
     }
@@ -56,7 +58,8 @@ class StudyClassesController extends Controller
 
     public function create($courseID)
     {
-        return view('lecturer.studyclasses.create', compact('courseID'));
+        $users = $this->userRepo->findLecturer()->lists('name', 'id');
+        return view('lecturer.studyclasses.create', compact('courseID', 'users'));
     }
 
     public function show($courseID, $id)

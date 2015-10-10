@@ -21,7 +21,12 @@ class EloquentStudyClassRepository extends EloquentRepository implements StudyCl
             'id' => $data['id'],
             'name' => $data['name'],
             'description' => $data['description'],
-            'course_id' => $courseID
+            'course_id' => $courseID,
+            'type' => $data['type'],
+            'semester' => $data['semester'],
+            'max_student' => $data['max_student'],
+            'enroll_key' => str_random(8),
+            'user_id' => $data['user_id']
         ]);
     }
 
