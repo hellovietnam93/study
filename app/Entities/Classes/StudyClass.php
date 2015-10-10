@@ -31,4 +31,9 @@ class StudyClass extends Model
     {
         return $this->belongsTo('studyhub\Entities\Users\User');
     }
+
+    public function user_class()
+    {
+        return $this->hasMany('studyhub\Entities\UserCLass');
+    }
 }

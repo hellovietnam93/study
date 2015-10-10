@@ -11,9 +11,10 @@ use studyhub\Repositories\StudyClass\StudyClassRepositoryInterface as StudyClass
 use studyhub\Repositories\User\UserRepositoryInterface as UserRepo;
 use studyhub\Http\Requests\ClassRequest;
 use studyhub\Entities\Courses\Course;
+
 class StudyClassesController extends Controller
 {
-    protected $studyclassRepo, $courseRepo;
+    protected $studyclassRepo, $courseRepo, $userRepo;
 
     public function __construct(CourseRepo $courseRepo, StudyClassRepo $studyclassRepo, UserRepo $userRepo)
     {

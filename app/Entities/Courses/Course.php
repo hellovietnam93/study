@@ -28,4 +28,14 @@ class Course extends Model
     {
     	return $this->hasMany('studyhub\Entities\Classes\StudyClass');
     }
+
+    public function user_class()
+    {
+        return $this->hasMany('studyhub\Entities\UserCLass');
+    }
+
+    public function user_course()
+    {
+        return $this->hasMany('studyhub\Entities\UserCourse');
+    }
 }

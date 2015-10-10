@@ -5,6 +5,7 @@ namespace studyhub\Repositories\User;
 use studyhub\Entities\Users\User;
 use studyhub\Entities\Role;
 use studyhub\Repositories\EloquentRepository;
+use studyhub\Entities\Classes\StudyClass;
 
 class EloquentUserRepository extends EloquentRepository implements UserRepositoryInterface
 {
@@ -106,5 +107,10 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
     public function findLecturer()
     {
         return $user = Role::find(2)->users()->get();
+    }
+
+    public function findUserInClass($class)
+    {
+        return $users = StudyClass::find($class->id)->user()->get();
     }
 }

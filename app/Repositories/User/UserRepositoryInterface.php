@@ -18,4 +18,5 @@ interface UserRepositoryInterface
     public function fetchUsersByIds(array $ids);
     public function findOrCreateNew(array $userData, $authProvider);
     public function findLecturer();
+    public function findUserInClass($class);
 }

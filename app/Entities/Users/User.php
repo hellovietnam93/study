@@ -61,12 +61,24 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->slug;
     }
 
-    /**
-     * Each user has a profile
-     * @return [type] [description]
-     */
-    // public function profile()
-    // {
-    //     return $this->hasOne('studyhub\Entities\Users\UserProfile');
-    // }
+    public function user_class()
+    {
+        return $this->hasMany('studyhub\Entities\UserClass');
+    }
+
+    public function user_course()
+    {
+        return $this->hasMany('studyhub\Entities\UserCourse');
+    }
+
+    public function checkUserInClass($classID, $userID)
+    {
+      $user_class = $this->user_class()->where('class_id', $classID)
+                                        ->where('user_id', $userID)
+                                        ->firstOrFail();
+      if(!$user_class)
+          return true;
+      else
+          return false;
+    }
 }
