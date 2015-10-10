@@ -26,139 +26,141 @@
         </div>
 
         <div class="page-right">
-          <div class="sidebar">
-            <!-- acitivity -->
-            <div class="activity-list sidebar-component">
-              <div class="component-header">
-                <span>Thông báo</span>
-              </div>
-              <div class="component-body">
-                <div class="activities scrollable" id="activities">
-                  <div class="activity">
-                    <div class="creator">
-                      <img src="img/static/avatar.jpg" alt="" class="member-avatar">
-                    </div>
-                    <div class="activity-desc">
-                      <div class="activity-content">
-                        <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+          @unless (auth()->guest())
+            <div class="sidebar">
+              <!-- acitivity -->
+              <div class="activity-list sidebar-component">
+                <div class="component-header">
+                  <span>Thông báo</span>
+                </div>
+                <div class="component-body">
+                  <div class="activities scrollable" id="activities">
+                    <div class="activity">
+                      <div class="creator">
+                        <img src="img/static/avatar.jpg" alt="" class="member-avatar">
                       </div>
-                      <div class="activity-meta">
-                        <span class="date">1 giờ trước</span>
+                      <div class="activity-desc">
+                        <div class="activity-content">
+                          <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                        </div>
+                        <div class="activity-meta">
+                          <span class="date">1 giờ trước</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="activity">
-                    <div class="creator">
-                      <img src="img/static/avatar.jpg" alt="" class="member-avatar">
-                    </div>
-                    <div class="activity-desc">
-                      <div class="activity-content">
-                        <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                    <div class="activity">
+                      <div class="creator">
+                        <img src="img/static/avatar.jpg" alt="" class="member-avatar">
                       </div>
-                      <div class="activity-meta">
-                        <span class="date">1 giờ trước</span>
+                      <div class="activity-desc">
+                        <div class="activity-content">
+                          <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                        </div>
+                        <div class="activity-meta">
+                          <span class="date">1 giờ trước</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="activity">
-                    <div class="creator">
-                      <img src="img/static/avatar.jpg" alt="" class="member-avatar">
-                    </div>
-                    <div class="activity-desc">
-                      <div class="activity-content">
-                        <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                    <div class="activity">
+                      <div class="creator">
+                        <img src="img/static/avatar.jpg" alt="" class="member-avatar">
                       </div>
-                      <div class="activity-meta">
-                        <span class="date">1 giờ trước</span>
+                      <div class="activity-desc">
+                        <div class="activity-content">
+                          <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                        </div>
+                        <div class="activity-meta">
+                          <span class="date">1 giờ trước</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="activity">
-                    <div class="creator">
-                      <img src="img/static/avatar.jpg" alt="" class="member-avatar">
-                    </div>
-                    <div class="activity-desc">
-                      <div class="activity-content">
-                        <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                    <div class="activity">
+                      <div class="creator">
+                        <img src="img/static/avatar.jpg" alt="" class="member-avatar">
                       </div>
-                      <div class="activity-meta">
-                        <span class="date">1 giờ trước</span>
+                      <div class="activity-desc">
+                        <div class="activity-content">
+                          <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                        </div>
+                        <div class="activity-meta">
+                          <span class="date">1 giờ trước</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="activity">
-                    <div class="creator">
-                      <img src="img/static/avatar.jpg" alt="" class="member-avatar">
-                    </div>
-                    <div class="activity-desc">
-                      <div class="activity-content">
-                        <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                    <div class="activity">
+                      <div class="creator">
+                        <img src="img/static/avatar.jpg" alt="" class="member-avatar">
                       </div>
-                      <div class="activity-meta">
-                        <span class="date">1 giờ trước</span>
+                      <div class="activity-desc">
+                        <div class="activity-content">
+                          <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                        </div>
+                        <div class="activity-meta">
+                          <span class="date">1 giờ trước</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="activity">
-                    <div class="creator">
-                      <img src="img/static/avatar.jpg" alt="" class="member-avatar">
-                    </div>
-                    <div class="activity-desc">
-                      <div class="activity-content">
-                        <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                    <div class="activity">
+                      <div class="creator">
+                        <img src="img/static/avatar.jpg" alt="" class="member-avatar">
                       </div>
-                      <div class="activity-meta">
-                        <span class="date">1 giờ trước</span>
+                      <div class="activity-desc">
+                        <div class="activity-content">
+                          <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                        </div>
+                        <div class="activity-meta">
+                          <span class="date">1 giờ trước</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="activity">
-                    <div class="creator">
-                      <img src="img/static/avatar.jpg" alt="" class="member-avatar">
-                    </div>
-                    <div class="activity-desc">
-                      <div class="activity-content">
-                        <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                    <div class="activity">
+                      <div class="creator">
+                        <img src="img/static/avatar.jpg" alt="" class="member-avatar">
                       </div>
-                      <div class="activity-meta">
-                        <span class="date">1 giờ trước</span>
+                      <div class="activity-desc">
+                        <div class="activity-content">
+                          <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                        </div>
+                        <div class="activity-meta">
+                          <span class="date">1 giờ trước</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="activity">
-                    <div class="creator">
-                      <img src="img/static/avatar.jpg" alt="" class="member-avatar">
-                    </div>
-                    <div class="activity-desc">
-                      <div class="activity-content">
-                        <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                    <div class="activity">
+                      <div class="creator">
+                        <img src="img/static/avatar.jpg" alt="" class="member-avatar">
                       </div>
-                      <div class="activity-meta">
-                        <span class="date">1 giờ trước</span>
+                      <div class="activity-desc">
+                        <div class="activity-content">
+                          <span class="inline-member">Đào Đức Cương</span> đã tải lên một tài liệu trong lớp <span class="target">84346 - Cơ sở dữ liệu</span>
+                        </div>
+                        <div class="activity-meta">
+                          <span class="date">1 giờ trước</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div> <!-- ./activities -->
-              </div> <!-- ./component-body -->
-            </div> <!-- ./activity -->
-            <!-- mini-calendar -->
-            <div class="mini-calendar sidebar-component">
-              <div class="component-header">
-                <span>Lịch làm việc</span>
-                <span class="pull-right collapse-component" id="collapseCalendar"><i class="glyphicon glyphicon-chevron-down"></i></span>
-              </div>
-              <div class="component-body">
-              <div id="miniCalendar"></div>
-              </div> <!-- ./component-body-->
-            </div> <!-- ./mini-calendar -->
-          </div>
+                  </div> <!-- ./activities -->
+                </div> <!-- ./component-body -->
+              </div> <!-- ./activity -->
+              <!-- mini-calendar -->
+              <div class="mini-calendar sidebar-component">
+                <div class="component-header">
+                  <span>Lịch làm việc</span>
+                  <span class="pull-right collapse-component" id="collapseCalendar"><i class="glyphicon glyphicon-chevron-down"></i></span>
+                </div>
+                <div class="component-body">
+                <div id="miniCalendar"></div>
+                </div> <!-- ./component-body-->
+              </div> <!-- ./mini-calendar -->
+            </div>
+          @endunless
         </div>
       </div>
 
