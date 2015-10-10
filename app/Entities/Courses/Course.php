@@ -7,35 +7,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
-    use SoftDeletes;
+  use SoftDeletes;
 
-    protected $table = 'courses';
+  protected $table = 'courses';
+  protected $fillable = [
+  	'id', 'name', 'description', 'credit', 'credit_fee', 'theory_duration',
+  	'exercise_duration', 'practice_duration', 'weight', 'en_name', 'abbr_name',
+  	'coures_group', 'language', 'evaludation'
+  ];
+  protected $dates = ['deleted_at'];
+  public function studyClass()
+  {
+  	return $this->hasMany('studyhub\Entities\Classes\StudyClass');
+  }
 
+  public function user_class()
+  {
+    return $this->hasMany('studyhub\Entities\UserCLass');
+  }
 
-    protected $fillable = [
-    	'id', 'name', 'description', 'credit', 'credit_fee', 'theory_duration',
-    	'exercise_duration', 'practice_duration', 'weight', 'en_name', 'abbr_name',
-    	'coures_group', 'language', 'evaludation'
-    ];
-
-    protected $dates = ['deleted_at'];
-
-    /**
-     * A course can have many classes
-     * @return [type] [description]
-     */
-    public function studyClass()
-    {
-    	return $this->hasMany('studyhub\Entities\Classes\StudyClass');
-    }
-
-    public function user_class()
-    {
-        return $this->hasMany('studyhub\Entities\UserCLass');
-    }
-
-    public function user_course()
-    {
-        return $this->hasMany('studyhub\Entities\UserCourse');
-    }
+  public function user_course()
+  {
+    return $this->hasMany('studyhub\Entities\UserCourse');
+  }
 }

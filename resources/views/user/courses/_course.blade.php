@@ -13,17 +13,13 @@
       <div class="course-title">
         <h4>{{$course->name}}</h4>
       </div>
-      <a href="{{ route('lecturer::course.edit', $course->id) }}">
-        {{ trans('layout.button.action.edit') }}
-      </a>
-      @include('lecturer.courses._delete')
       <div class="course-info">
         <div class="row">
           <div class="col-xs-6">
-            <p>{{ trans('studyclass.header.id') }}<span class="class-code card-value">84346</span></p>
+            <p>{{ trans('studyclass.header.id') }} <span class="class-code card-value">84346</span></p>
           </div>
           <div class="col-xs-6">
-            <p><span class="course-credit card-value">2</span> {{ trans('studyclass.header.tinchi') }}</p>
+            <p><span class="course-credit card-value">2</span>{{ trans('studyclass.header.tinchi') }}</p>
           </div>
           <div class="col-xs-6">
             <p>{{ trans('studyclass.header.semester') }}<span class="class-semester card-value">20151</span></p>

@@ -14,71 +14,70 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use studyhub\Entities\Presenters\Traits\PresentableTrait;
 use studyhub\Entities\Presenters\Contracts\PresentableInterface;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract,
+  SluggableInterface
 {
-    use Authenticatable, CanResetPassword, SluggableTrait, SoftDeletes, EntrustUserTrait, PresentableTrait;
+  use Authenticatable, CanResetPassword, SluggableTrait, SoftDeletes,
+    EntrustUserTrait, PresentableTrait;
 
-    protected $table = 'users';
-    protected $dates = ['deleted_at'];
-    protected $casts = ['active' => 'boolean'];
-    protected $presenter = \studyhub\Entities\Presenters\UserPresenter::class;
-    protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
-    protected $fillable = ['name', 'email', 'password', 'slug', 'status',
+  protected $table = 'users';
+  protected $dates = ['deleted_at'];
+  protected $casts = ['active' => 'boolean'];
+  protected $presenter = \studyhub\Entities\Presenters\UserPresenter::class;
+  protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
+  protected $fillable = ['name', 'email', 'password', 'slug', 'status',
     'activation_code', 'active'];
-    protected $hidden = ['password', 'remember_token', 'activation_code'];
+  protected $hidden = ['password', 'remember_token', 'activation_code'];
 
-    /**
-     * A studyhub user can be a student, a lecturer, a staff, etc.
-     * This gets all of the owning userable models.
-     */
-    public function userable()
-    {
-        return $this->morphTo();
-    }
+  public function userable()
+  {
+    return $this->morphTo();
+  }
 
-    public function isActive()
-    {
-        return $this->active;
-    }
+  public function isActive()
+  {
+    return $this->active;
+  }
 
-    public function isAdmin()
-    {
-        return $this->hasRole(['admin', 'owner']);
-    }
+  public function isAdmin()
+  {
+    return $this->hasRole(['admin', 'owner']);
+  }
 
-    public function isLecturer()
-    {
-        return $this->hasRole(['lecturer']);
-    }
+  public function isLecturer()
+  {
+    return $this->hasRole(['lecturer']);
+  }
 
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
+  public function setPasswordAttribute($password)
+  {
+    $this->attributes['password'] = bcrypt($password);
+  }
 
-    public function getRouteKey()
-    {
-        return $this->slug;
-    }
+  public function getRouteKey()
+  {
+    return $this->slug;
+  }
 
-    public function user_class()
-    {
-        return $this->hasMany('studyhub\Entities\UserClass');
-    }
+  public function user_class()
+  {
+    return $this->hasMany('studyhub\Entities\UserClass');
+  }
 
-    public function user_course()
-    {
-        return $this->hasMany('studyhub\Entities\UserCourse');
-    }
+  public function user_course()
+  {
+    return $this->hasMany('studyhub\Entities\UserCourse');
+  }
 
-    public function checkUserInClass($classID, $userID)
-    {
-      $user_class = $this->user_class()->where('class_id', $classID)
-                                        ->where('user_id', $userID)
-                                        ->firstOrFail();
-      if(!$user_class)
-          return true;
-      else
-          return false;
-    }
+  public function checkUserInClass($classID, $userID)
+  {
+    $user_class = $this->user_class()
+      ->where('class_id', $classID)
+      ->where('user_id', $userID)
+      ->firstOrFail();
+    if(!$user_class)
+        return true;
+    else
+        return false;
+  }
 }

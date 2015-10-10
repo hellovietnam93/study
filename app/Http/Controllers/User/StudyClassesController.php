@@ -12,31 +12,28 @@ use studyhub\Repositories\User\UserRepositoryInterface as UserRepo;
 
 class StudyClassesController extends Controller
 {
-    protected $courseRepo, $studyclassRepo, $userRepo;
+  protected $courseRepo, $studyclassRepo, $userRepo;
 
-    public function __construct(CourseRepo $courseRepo, StudyClassRepo $studyclassRepo, UserRepo $userRepo)
-    {
-        $this->userRepo = $userRepo;
-        $this->courseRepo = $courseRepo;
-        $this->studyclassRepo = $studyclassRepo;
-        $this->middleware('auth');
+  public function __construct(CourseRepo $courseRepo, StudyClassRepo $studyclassRepo, UserRepo $userRepo)
+  {
+    $this->userRepo = $userRepo;
+    $this->courseRepo = $courseRepo;
+    $this->studyclassRepo = $studyclassRepo;
+    $this->middleware('auth');
+  }
 
-    }
+  public function index($courseID)
+  {
+    $course = $this->courseRepo->findById($courseID);
+    $classes = $this->studyclassRepo->fetchCourseUrgentClasses($course);
+    return view('user.studyclasses.index', compact('course', 'classes'));
+  }
 
-    public function index()
-    {
-        $course = $this->courseRepo->findById($courseID);
-        $classes = $this->studyclassRepo->fetchCourseUrgentClasses($course);
-
-        return view('user.studyclasses.index', compact('course', 'classes'));
-    }
-
-    public function show($courseID, $id)
-    {
-        $course = $this->courseRepo->findById($courseID);
-        $class = $this->studyclassRepo->findClassByCourse($course, $id);
-        $users = $this->userRepo->findUserInClass($class);
-
-        return view('user.studyclasses.show', compact('course', 'class', 'users'));
-    }
+  public function show($courseID, $id)
+  {
+    $course = $this->courseRepo->findById($courseID);
+    $class = $this->studyclassRepo->findClassByCourse($course, $id);
+    $users = $this->userRepo->findUserInClass($class);
+    return view('user.studyclasses.show', compact('course', 'class', 'users'));
+  }
 }

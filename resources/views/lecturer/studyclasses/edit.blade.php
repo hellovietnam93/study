@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('title', $class->id)
+@extends('layouts.lecturer')
 @section('content')
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -9,5 +8,10 @@
         {!! Form::close() !!}
       </div>
     </div>
+  </div>
+@stop
+@section('footer')
+  <div class="pagelet-footer">
+    <span class="system-info">{{ trans('layout.footer.name') }}</span>
   </div>
 @stop

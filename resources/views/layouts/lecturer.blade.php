@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>StudyHub | Hệ thống Hỗ trợ Học tập, Giảng dạy Trường Đại học Bách Khoa Hà Nội | Online Learning and Teaching Support System at Hanoi University of Science and Technology</title>
+    <title>{{ trans('layout.title') }}</title>
 
     <!-- Bootstrap -->
     <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
@@ -28,10 +28,9 @@
         <div class="page-right">
           @unless (auth()->guest())
             <div class="sidebar">
-              <!-- acitivity -->
               <div class="activity-list sidebar-component">
                 <div class="component-header">
-                  <span>Thông báo</span>
+                  <span>{{ trans('layout.notice') }}</span>
                 </div>
                 <div class="component-body">
                   <div class="activities scrollable" id="activities">
@@ -146,10 +145,9 @@
                         </div>
                       </div>
                     </div>
-                  </div> <!-- ./activities -->
-                </div> <!-- ./component-body -->
-              </div> <!-- ./activity -->
-              <!-- mini-calendar -->
+                  </div>
+                </div>
+              </div>
               <div class="mini-calendar sidebar-component">
                 <div class="component-header">
                   <span>Lịch làm việc</span>
@@ -157,13 +155,12 @@
                 </div>
                 <div class="component-body">
                 <div id="miniCalendar"></div>
-                </div> <!-- ./component-body-->
-              </div> <!-- ./mini-calendar -->
+                </div>
+              </div>
             </div>
           @endunless
         </div>
       </div>
-
       @yield('footer')
   </body>
 </html>

@@ -7,12 +7,11 @@ use Illuminate\Queue\SerializesModels;
 
 class UserHasRegistered extends Event
 {
-    use SerializesModels;
+  use SerializesModels;
+  public $user;
 
-    public $user;
-
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
+  public function __construct(User $user)
+  {
+    $this->user = $user;
+  }
 }

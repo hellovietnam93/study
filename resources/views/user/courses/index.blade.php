@@ -1,6 +1,4 @@
 @extends('layouts.lecturer')
-@section('title', 'Tất cả môn học | StudyHub - Hệ thống Hỗ trợ Học tập, Giảng dạy -
-  Trường Đại học Bách Khoa Hà Nội')
 @section('content')
   <div class="container-fluid">
     <div class="row">
@@ -19,11 +17,10 @@
     </div>
     <div class="row">
       <div class="pagelet-content">
-        <!-- Class list -->
         <div class="row grid-view">
           <div class="row-eq-height">
             @foreach($courses as $course)
-              @include('lecturer.courses._course')
+              @include('user.courses._course')
             @endforeach
           </div>
         </div>
@@ -33,6 +30,6 @@
 @stop
 @section('footer')
   <div class="pagelet-footer">
-    <span class="system-info">StudyHub - Hệ thống hỗ trợ Học tập - Giảng dạy Trường Đại học Bách Khoa Hà Nội</span>
+    <span class="system-info">{{ trans('layout.footer.name') }}</span>
   </div>
 @stop

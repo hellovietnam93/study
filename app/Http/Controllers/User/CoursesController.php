@@ -11,28 +11,26 @@ use studyhub\Repositories\StudyClass\StudyClassRepositoryInterface as StudyClass
 
 class CoursesController extends Controller
 {
-    protected $courseRepo, $studyclassRepo;
+  protected $courseRepo, $studyclassRepo;
 
-    public function __construct(CourseRepo $courseRepo, StudyClassRepo $studyclassRepo)
-    {
-        $this->courseRepo = $courseRepo;
-        $this->studyclassRepo = $studyclassRepo;
-        $this->middleware('auth');
+  public function __construct(CourseRepo $courseRepo, StudyClassRepo $studyclassRepo)
+  {
+    $this->courseRepo = $courseRepo;
+    $this->studyclassRepo = $studyclassRepo;
+    $this->middleware('auth');
 
-    }
+  }
 
-    public function index()
-    {
-        $courses = $this->courseRepo->getAll();
+  public function index()
+  {
+    $courses = $this->courseRepo->getAll();
+    return view('user.courses.index', compact('courses'));
+  }
 
-        return view('user.courses.index', compact('courses'));
-    }
-
-    public function show($id)
-    {
-        $course = $this->courseRepo->findById($id);
-        $classes = $this->studyclassRepo->fetchCourseUrgentClasses($course);
-
-        return view('user.courses.show', compact('course', 'classes'));
-    }
+  public function show($id)
+  {
+    $course = $this->courseRepo->findById($id);
+    $classes = $this->studyclassRepo->fetchCourseUrgentClasses($course);
+    return view('user.courses.show', compact('course', 'classes'));
+  }
 }

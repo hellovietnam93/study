@@ -6,25 +6,25 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'member',
   Route::resource('course', 'CoursesController', [
     'only' => ['index', 'show'],
     'names' => [
-        'index'   => 'member::courses',
-        'show'    => 'member::course.show'
+      'index'   => 'member::courses',
+      'show'    => 'member::course.show'
     ]
   ]);
 
   Route::resource('course.class', 'StudyClassesController', [
     'only' => ['index', 'show'],
     'names' => [
-        'index'   => 'member::classes',
-        'show'    => 'member::class.show'
+      'index'   => 'member::classes',
+      'show'    => 'member::class.show'
     ]
   ]);
 
   Route::resource('course.class.enroll', 'UserClassesController', [
     'only' => ['create', 'store', 'destroy'],
     'names' => [
-        'create'   => 'member::enroll',
-        'destroy'  => 'member::enroll.destroy',
-        'store'    => 'member::enroll.store'
+      'create'   => 'member::enroll',
+      'destroy'  => 'member::enroll.destroy',
+      'store'    => 'member::enroll.store'
     ]
   ]);
 });
