@@ -1,10 +1,26 @@
 <?php
-
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-
 class DatabaseSeeder extends Seeder
 {
+    /**
+     * Tables for seeding data.
+     *
+     * @var array
+     */
+    protected $tables = [
+        'roles',
+        'users',
+    ];
+    /**
+     * Seeder classes.
+     *
+     * @var array
+     */
+    protected $seeders = [
+        RolesTableSeeder::class,
+        UsersTableSeeder::class,
+    ];
     /**
      * Run the database seeds.
      *
@@ -13,9 +29,22 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
-        // $this->call(UserTableSeeder::class);
-
-        Model::reguard();
+        if (DB::connection()->getName() === 'mysql') {
+            $this->truncateDatabase();
+        }
+        foreach ($this->seeders as $seeder) {
+            $this->call($seeder);
+        }
+    }
+    /**
+     * Truncate the database.
+     */
+    private function truncateDatabase()
+    {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        foreach ($this->tables as $table) {
+            DB::table($table)->truncate();
+        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

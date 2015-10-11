@@ -1,24 +1,13 @@
 <?php
+use studyhub\Entities\Users\User;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
+use Faker\Generator as Faker;
 
-$factory->define(studyhub\Entities\Users\User::class, function ($faker) {
-    return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
-        'activation_token' => str_random(60),
-        'status' => 0,
-        'role_id' => 0
-    ];
+$factory->define(User::class, function (Faker $faker) {
+  return [
+    'name' => $faker->name,
+    'email' => $faker->email,
+    'password' => '123456',
+    'active' => 1,
+  ];
 });

@@ -34,7 +34,7 @@
   {!! error_text($errors, 'exercise_duration') !!}
 </div>
 <div class="form-group summernote-container">
-  {!! Form::label('practice_duration', trans('course.field.pactice_duration'), ['class' => 'control-label']) !!}
+  {!! Form::label('practice_duration', trans('course.field.practice_duration'), ['class' => 'control-label']) !!}
   {!! Form::number('practice_duration', null, ['id' => 'summernote', 'class' => 'form-control']) !!}
   {!! error_text($errors, 'practice_duration') !!}
 </div>

@@ -1,4 +1,4 @@
-{!! Form::open(['route' => 'lecturer::course.upload', 'files' => true]) !!}
+{!! Form::open(['route' => 'admin::course.upload', 'files' => true]) !!}
   <div class="form-group">
     <label for="csv-file">{{ trans('layout.upload_file') }}</label>
     {!! Form::file('csv-file', ['id' => 'csv-file']) !!}
