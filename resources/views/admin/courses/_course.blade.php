@@ -13,6 +13,10 @@
       <div class="course-title">
         <h4>{{$course->name}}</h4>
       </div>
+      <a href="{{ route('admin::course.edit', $course->id) }}">
+        {{ trans('layout.button.action.edit') }}
+      </a>
+      @include('admin.courses._delete')
       <div class="course-info">
         <div class="row">
           <div class="col-xs-6">

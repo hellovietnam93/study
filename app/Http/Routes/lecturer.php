@@ -17,14 +17,10 @@ Route::group(['middleware' => ['auth', 'valid.roles:lecturer'], 'prefix' => 'lec
   ]);
 
   Route::resource('course', 'CoursesController', [
+    'only' => ['index', 'show'],
     'names' => [
       'index'   => 'lecturer::courses',
-      'create'  => 'lecturer::course.create',
-      'store'   => 'lecturer::course.store',
       'show'    => 'lecturer::course.show',
-      'edit'    => 'lecturer::course.edit',
-      'update'  => 'lecturer::course.update',
-      'destroy' => 'lecturer::course.destroy'
     ]
   ]);
 
@@ -37,6 +33,14 @@ Route::group(['middleware' => ['auth', 'valid.roles:lecturer'], 'prefix' => 'lec
       'edit'    => 'lecturer::class.edit',
       'update'  => 'lecturer::class.update',
       'destroy' => 'lecturer::class.destroy'
+    ]
+  ]);
+
+  Route::resource('course.class.enroll', 'EnrollsController', [
+    'only' => ['create', 'store'],
+    'names' => [
+      'create'   => 'lecturer::enroll',
+      'store'    => 'lecturer::enroll.store'
     ]
   ]);
 });

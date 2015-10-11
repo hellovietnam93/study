@@ -22,7 +22,7 @@ class CreateClassesTable extends Migration
             $table->integer('registered_student')->default(0);
             $table->string('course_id')->nullable();
             $table->string('enroll_key');
-            $table->string('user_id');
+            $table->string('user_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

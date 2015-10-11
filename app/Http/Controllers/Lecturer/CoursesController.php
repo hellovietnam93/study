@@ -27,43 +27,10 @@ class CoursesController extends Controller
     return view('lecturer.courses.index', compact('courses'));
   }
 
-  public function edit($id)
-  {
-    $course = $this->courseRepo->findById($id);
-    return view('lecturer.courses.edit', compact('course'));
-  }
-
-  public function update(CourseRequest $request, $id)
-  {
-    $course = $this->courseRepo->update($request->all(), $id);
-    flash()->info(trans('controller.course_updated', ['course' => $id]));
-    return redirect()->route('lecturer::course.show', $id);
-  }
-
-  public function store(CourseRequest $request)
-  {
-    $course = $this->courseRepo->create($request->except(['_token', '_method']));
-    // event(new TaskHasPublished($author, $task));
-    flash()->success(trans('controller.course_created'));
-    return redirect()->route('lecturer::courses');
-  }
-
-  public function create()
-  {
-    return view('lecturer.courses.create');
-  }
-
   public function show($id)
   {
     $course = $this->courseRepo->findById($id);
     $classes = $this->studyclassRepo->fetchCourseUrgentClasses($course);
     return view('lecturer.courses.show', compact('course', 'classes'));
-  }
-
-  public function destroy($id)
-  {
-    $this->courseRepo->softDelete($id);
-    flash()->info(trans('lecturer.course_trashed'));
-    return back();
   }
 }

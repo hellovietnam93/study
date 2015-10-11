@@ -27,7 +27,7 @@ class EloquentStudyClassRepository extends EloquentRepository implements StudyCl
       'semester' => $data['semester'],
       'max_student' => $data['max_student'],
       'enroll_key' => str_random(8),
-      'user_id' => $data['user_id']
+      'user_id' => get_by_key('user_id', $data)
     ]);
   }
 
@@ -123,5 +123,12 @@ class EloquentStudyClassRepository extends EloquentRepository implements StudyCl
   public function fetchUsers($class)
   {
     return User::whereIn('id', $class->user_class()->lists('user_id')->toArray())->get();
+  }
+
+  public function updateLecturer($class, $user)
+  {
+    return $class->update([
+      'user_id' => $user->id
+    ]);
   }
 }

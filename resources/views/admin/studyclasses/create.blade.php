@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="form-wrapper">
-        {!! Form::open(['method' => 'POST', 'route' => ['lecturer::class.store', $course->id]]) !!}
-          @include('lecturer.studyclasses._form')
+        {!! Form::open(['method' => 'POST', 'route' => ['admin::class.store', $course->id]]) !!}
+          @include('admin.studyclasses._form')
         {!! Form::close() !!}
       </div>
     </div>

@@ -12,7 +12,7 @@ class StudyClass extends Model
   protected $dates = ['deleted_at'];
   protected $fillable = [
   	'id', 'name', 'type', 'description', 'semester',
-  	'max_student', 'registered_student', 'course_id', 'enroll_key', 'user_id'
+  	'max_student', 'registered_student', 'course_id', 'enroll_key', 'user_id', 'key'
   ];
 
 

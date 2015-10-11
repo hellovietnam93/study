@@ -16,4 +16,5 @@ interface StudyClassRepositoryInterface
   public function findClassByCourse($course, $id);
   public function fetchAllClassOfLuctere($lucturer);
   public function fetchUsers($class);
+  public function updateLecturer($class, $user);
 }

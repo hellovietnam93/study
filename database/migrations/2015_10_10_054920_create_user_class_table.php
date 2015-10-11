@@ -16,7 +16,7 @@ class CreateUserClassTable extends Migration
         {
             $table->increments('id');
             $table->string('course_id');
-            $table->integer('class_id');
+            $table->integer('class_id')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });

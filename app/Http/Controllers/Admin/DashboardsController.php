@@ -5,7 +5,7 @@ namespace studyhub\Http\Controllers\Admin;
 use studyhub\Http\Controllers\Controller;
 use studyhub\Repositories\User\UserRepositoryInterface as UserRepo;
 
-class DashboardController extends Controller
+class DashboardsController extends Controller
 {
   protected $users;
 
@@ -14,7 +14,7 @@ class DashboardController extends Controller
     $this->users = $userRepo;
   }
 
-  public function dashboard()
+  public function index()
   {
     $usersCount = $this->users->countAll();
 

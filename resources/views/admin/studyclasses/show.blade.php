@@ -6,16 +6,14 @@
         <div class="col-md-9">
           <div class="class">
             <table class="table table-bordered table-hover">
-              @include('lecturer.studyclasses._header')
-              @include('lecturer.studyclasses._class')
+              @include('admin.studyclasses._header')
+              @include('admin.studyclasses._class')
             </table>
           </div>
         </div>
         <div class="col-md-3">
           @if ($class->user_id == null)
-            <a href="{{ route('lecturer::enroll', array($course->id, $class->id)) }}">
-              {{ trans('studyclass.action.lecturer_enroll') }}
-            </a>
+            {{ trans('studyclass.no_teacher') }}
           @else
             {{ trans('studyclass.teacher') }}
             {{ $class->user->name }}

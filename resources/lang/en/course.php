@@ -20,6 +20,7 @@ return [
     'enroll_class' => 'Vào lớp học',
     'new_class' => 'Tạo mới lớp học',
     'new_course' => 'Tạo mới học phần',
+    'add_class_teaching' => 'Thêm lớp giảng dạy',
   ],
   'class_name' => 'Course',
   'header' => [

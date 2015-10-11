@@ -7,8 +7,11 @@
           <h3 class="pagelet-title">Các lớp học trong kỳ 20151</h3>
         </div>
         <div class="pagelet-header-menu-wrapper pagelet-header-component">
-          <button class="btn shbtn-default shbtn-slim popoverable" id="addTeachingClass" type="button" data-popover="#initializeCreateNewClass">
-            {{ trans('course.action.add_class_teaching') }}
+          <button class="btn shbtn-default shbtn-slim popoverable" id="addTeachingClass" type="button" data-popover="#initializeCreateNewClass">Thêm lớp giảng dạy</button>
+
+          <button class="btn shbtn-default shbtn-slim" id="createNewCreate"
+            type="button" data-popover="#initializeCreateNewClass">
+            <a href="{{ route('admin::course.create') }}">{{ trans('course.action.new_class') }}</a>
           </button>
         </div>
         <div class="pagelet-header-control-wrapper pagelet-header-component">
@@ -25,8 +28,19 @@
         <div class="row grid-view">
           <div class="row-eq-height">
             @foreach($courses as $course)
-              @include('lecturer.courses._course')
+              @include('admin.courses._course')
             @endforeach
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper" id="authPage">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card auth-card">
+              @include('admin.courses._uploads')
+            </div>
           </div>
         </div>
       </div>

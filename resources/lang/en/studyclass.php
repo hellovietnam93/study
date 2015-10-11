@@ -9,10 +9,12 @@ return [
     'semester' => 'Semester',
     'max_student' => 'Max student',
     'registrated_stdudent' => 'Registrated student',
+    'lecturer' => 'Lecturer',
     'key' => 'Key'
   ],
   'action' => [
-    'enroll' => 'Tham gia lớp học',
+    'lecturer_enroll' => 'Tham gia phụ trách lớp học',
+    'student_enroll' => "Tham gia lớp học",
   ],
   'classes' => 'Classes',
   'header' => [
@@ -21,4 +23,6 @@ return [
     'week' => 'Tuần thứ: ',
     'tinchi' => 'Tín chỉ'
   ],
+  'teacher' => "Giáo viên phụ trách: ",
+  'no_teacher' => "Hiện tại chưa có ai phụ trách!",
 ];

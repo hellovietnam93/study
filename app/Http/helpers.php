@@ -147,3 +147,17 @@ if (!function_exists('get_class_short_name')) {
         return (new ReflectionClass($object))->getShortName();
     }
 }
+
+if (!function_exists('get_by_key')) {
+    /**
+     * Get the values from an array using a key.
+     *
+     * @param $key
+     * @param array $data
+     * @return array
+     */
+    function get_by_key($key, array $data)
+    {
+        return array_key_exists($key, $data) ? $data[$key] : null;
+    }
+}

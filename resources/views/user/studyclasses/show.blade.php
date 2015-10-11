@@ -14,7 +14,7 @@
         @if(!auth()->user()->checkUserInClass($class->id))
           <div class="col-md-3">
             <a href="{{ route('member::enroll', array($course->id, $class->id)) }}">
-              {{ trans('studyclass.action.enroll') }}
+              {{ trans('studyclass.action.student_enroll') }}
             </a>
           </div>
         @endif

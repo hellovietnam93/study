@@ -2,9 +2,10 @@
 @section('content')
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
+      <h1 class="text-center">{{ trans('course.action.new_course') }}</h1>
       <div class="form-wrapper">
-        {!! Form::model($course, ['method' => 'PATCH', 'route' => ['lecturer::course.update', $course]]) !!}
-          @include('lecturer.courses._form')
+        {!! Form::open(['method' => 'POST', 'route' => ['admin::course.store']]) !!}
+          @include('admin.courses._form')
         {!! Form::close() !!}
       </div>
     </div>
