@@ -18,7 +18,8 @@ class VerifyUserRoles
   public function handle($request, Closure $next, $roles)
   {
     if (!$this->auth->user()->hasRole($roles, true)) {
-      throw new InvalidRolesException(trans('exception.invalid_role_exception'));
+      abort(404);
+      // throw new InvalidRolesException(trans('exception.invalid_role_exception'));
     }
     return $next($request);
   }

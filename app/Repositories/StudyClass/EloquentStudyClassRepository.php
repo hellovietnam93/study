@@ -4,6 +4,7 @@ namespace studyhub\Repositories\StudyClass;
 
 use studyhub\Entities\Classes\StudyClass;
 use studyhub\Entities\Courses\Course;
+use studyhub\Entities\Users\User;
 use studyhub\Repositories\EloquentRepository;
 
 class EloquentStudyClassRepository extends EloquentRepository implements StudyClassRepositoryInterface
@@ -112,5 +113,15 @@ class EloquentStudyClassRepository extends EloquentRepository implements StudyCl
       ->where('course_id', $course->id)
       ->where('id', $id)
       ->firstOrFail();
+  }
+
+  public function fetchAllClassOfLuctere($lecturer)
+  {
+    return $this->model->where('user_id', $lecturer->id)->get();
+  }
+
+  public function fetchUsers($class)
+  {
+    return User::whereIn('id', $class->user_class()->lists('user_id')->toArray())->get();
   }
 }

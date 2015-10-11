@@ -10,8 +10,6 @@ use studyhub\Repositories\UserClass\UserClassRepositoryInterface as UserClassesR
 use studyhub\Repositories\Course\CourseRepositoryInterface as CourseRepo;
 use studyhub\Repositories\StudyClass\StudyClassRepositoryInterface as StudyClassRepo;
 use studyhub\Repositories\User\UserRepositoryInterface as UserRepo;
-use studyhub\Http\Requests\ClassRequest;
-use studyhub\Entities\Users\User;
 
 class UserClassesController extends Controller
 {
@@ -23,13 +21,15 @@ class UserClassesController extends Controller
     $this->courseRepo = $courseRepo;
     $this->studyclassRepo = $studyclassRepo;
     $this->userRepo = $userRepo;
-    $this->middleware('auth');
-
   }
 
   public function create($courseID, $classID)
   {
-    return view('user.userclasses.create', compact('courseID', 'classID'));
+    $course = $this->courseRepo->findById($courseID);
+    $class = $this->studyclassRepo->findClassByCourse($course, $classID);
+    if (!auth()->user()->checkUserInClass($class->id))
+      return view('user.userclasses.create', compact('course', 'class'));
+    return back();
   }
 
   public function store(Request $request, $courseID, $classID)
@@ -38,16 +38,14 @@ class UserClassesController extends Controller
     $class = $this->studyclassRepo->findClassByCourse($course, $classID);
     if ($request->key == $class->enroll_key)
     {
-      $enroll = $this->userclassesRepo->create($courseID, $classID, $request->user()->id);
+      $enroll = $this->userclassesRepo->create($courseID, $classID, auth()->user()->id);
       // event(new TaskHasPublished($author, $task));
       flash()->success(trans('controller.enroll_success'));
-      return redirect()->route('member::class.show', $courseID, $classID);
-  }
-    else
-    {
-      flash()->success('controller.enroll_failed');
-      return redirect()->back;
+      return redirect()->route('member::class.show', [$courseID, $classID]);
     }
+
+    flash()->success('controller.enroll_failed');
+    return redirect()->back;
   }
 
   public function destroy($id)

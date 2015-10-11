@@ -11,16 +11,16 @@
             </table>
           </div>
         </div>
-        <div class="col-md-3">
-          @if(Auth::user()->checkUserInClass($class->id, Auth::user()->id) == true)
+        @if(!auth()->user()->checkUserInClass($class->id))
+          <div class="col-md-3">
             <a href="{{ route('member::enroll', array($course->id, $class->id)) }}">
               {{ trans('studyclass.action.enroll') }}
             </a>
-          @endif
-        </div>
+          </div>
+        @endif
         <div class="col-md-12">
           @foreach($users as $user)
-            @include('user.users._user')
+            @include('user.studyclasses._user')
           @endforeach
         </div>
       </div>

@@ -33,7 +33,7 @@ class StudyClassesController extends Controller
   {
     $course = $this->courseRepo->findById($courseID);
     $class = $this->studyclassRepo->findClassByCourse($course, $id);
-    $users = $this->userRepo->findUserInClass($class);
+    $users = $this->studyclassRepo->fetchUsers($class);
     return view('user.studyclasses.show', compact('course', 'class', 'users'));
   }
 }

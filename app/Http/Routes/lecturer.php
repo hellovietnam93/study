@@ -9,6 +9,12 @@ Route::group(['middleware' => ['auth', 'valid.roles:lecturer'], 'prefix' => 'lec
 
 Route::group(['middleware' => ['auth', 'valid.roles:lecturer'], 'prefix' => 'lecturer',
   'namespace' => 'Lecturer'], function () {
+  Route::resource('dashboard', 'DashboardsController', [
+    'only' => 'index',
+    'names' => [
+      'index' => 'lecturer::dashboards'
+    ]
+  ]);
 
   Route::resource('course', 'CoursesController', [
     'names' => [

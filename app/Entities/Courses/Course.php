@@ -18,16 +18,16 @@ class Course extends Model
   protected $dates = ['deleted_at'];
   public function studyClass()
   {
-  	return $this->hasMany('studyhub\Entities\Classes\StudyClass');
+  	return $this->hasMany(\studyhub\Entities\Classes\StudyClass::class);
   }
 
   public function user_class()
   {
-    return $this->hasMany('studyhub\Entities\UserCLass');
+    return $this->hasMany(\studyhub\Entities\UserCLass::class);
   }
 
   public function user_course()
   {
-    return $this->hasMany('studyhub\Entities\UserCourse');
+    return $this->hasMany(\studyhub\Entities\UserCourse::class);
   }
 }

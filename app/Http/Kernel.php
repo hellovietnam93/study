@@ -22,5 +22,6 @@ class Kernel extends HttpKernel
     'auth.correct'      => \studyhub\Http\Middleware\RedirectIfNotCorrectUser::class,
     'valid.permissions' => \studyhub\Http\Middleware\VerifyUserPermissions::class,
     'valid.roles'       => \studyhub\Http\Middleware\VerifyUserRoles::class,
+    'normal.roles'      => \studyhub\Http\Middleware\VerifyNormalUsers::class,
   ];
 }

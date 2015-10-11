@@ -14,13 +14,11 @@ class CreateUserClassTable extends Migration
     {
         Schema::create('user_classes', function(Blueprint $table)
         {
-            $table->integer('id')->unique();
+            $table->increments('id');
             $table->string('course_id');
             $table->integer('class_id');
             $table->integer('user_id');
             $table->timestamps();
-
-            $table->primary('id');
         });
     }
 

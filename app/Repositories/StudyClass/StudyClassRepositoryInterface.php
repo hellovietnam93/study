@@ -14,4 +14,6 @@ interface StudyClassRepositoryInterface
   public function forceDelete($slug);
   public function fetchCourseUrgentClasses($course);
   public function findClassByCourse($course, $id);
+  public function fetchAllClassOfLuctere($lucturer);
+  public function fetchUsers($class);
 }

@@ -10,7 +10,7 @@
   <td>{{ $class->semester }}</td>
   <td>
     <a href="{{ route('lecturer::class.edit', array($course->id, $class->id)) }}">
-      Edit
+      {{ trans('layout.button.action.edit') }}
     </a>
     @include('lecturer.studyclasses._delete')
   </td>

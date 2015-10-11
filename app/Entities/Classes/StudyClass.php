@@ -15,18 +15,19 @@ class StudyClass extends Model
   	'max_student', 'registered_student', 'course_id', 'enroll_key', 'user_id'
   ];
 
+
   public function course()
   {
-  	return $this->belongsTo('studyhub\Entities\Courses\Course');
+  	return $this->belongsTo(\studyhub\Entities\Courses\Course::class);
   }
 
   public function user()
   {
-    return $this->belongsTo('studyhub\Entities\Users\User');
+    return $this->belongsTo(\studyhub\Entities\Users\User::class);
   }
 
   public function user_class()
   {
-    return $this->hasMany('studyhub\Entities\UserCLass');
+    return $this->hasMany(\studyhub\Entities\UserCLass::class, 'class_id');
   }
 }

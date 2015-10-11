@@ -2,6 +2,12 @@
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'member',
   'namespace' => 'User'], function () {
+  Route::resource('dashboard', 'DashboardsController', [
+    'only' => 'index',
+    'names' => [
+      'index' => 'member::dashboards'
+    ]
+  ]);
 
   Route::resource('course', 'CoursesController', [
     'only' => ['index', 'show'],

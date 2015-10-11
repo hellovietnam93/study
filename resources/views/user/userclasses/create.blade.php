@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="form-wrapper">
-        {!! Form::open(['method' => 'POST', 'route' => ['member::enroll.store', $courseID, $classID]]) !!}
+        {!! Form::open(['method' => 'POST', 'route' => ['member::enroll.store', $course->id, $class->id]]) !!}
           @include('user.userclasses._form')
         {!! Form::close() !!}
       </div>

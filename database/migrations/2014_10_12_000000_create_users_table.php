@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->string('activation_code', 100)->nullable();
             $table->smallInteger('status');
-            // $table->integer('role_id');
             $table->string('slug')->unique();
             // Columns for polymorphic relationship of User
             $table->integer('userable_id');

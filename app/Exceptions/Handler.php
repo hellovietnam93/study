@@ -19,6 +19,19 @@ class Handler extends ExceptionHandler
 
   public function render($request, Exception $e)
   {
+    switch (class_basename($e)) {
+      case 'InvalidUserException':
+        flash()->warning($e->getMessage());
+        return redirect()->home();
+
+      case 'InvalidRolesException':
+        flash()->warning($e->getMessage());
+        return redirect()->home();
+
+      case 'ModelNotFoundException':
+        abort(404);
+        break;
+    };
     return parent::render($request, $e);
   }
 }
