@@ -20,6 +20,11 @@ class CreateClassesTable extends Migration
             $table->string('semester', 10);
             $table->integer('max_student')->default(0);
             $table->integer('registered_student')->default(0);
+            $table->string('course_id')->nullable();
+            $table->string('enroll_key');
+            $table->string('user_id')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

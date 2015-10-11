@@ -7,23 +7,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class StudyClass extends Model
 {
-    use SoftDeletes;
+  use SoftDeletes;
+  protected $table = 'classes';
+  protected $dates = ['deleted_at'];
+  protected $fillable = [
+  	'id', 'name', 'type', 'description', 'semester',
+  	'max_student', 'registered_student', 'course_id', 'enroll_key', 'user_id', 'key'
+  ];
 
-    protected $table = 'classes';
 
-    protected $dates = ['deleted_at'];
+  public function course()
+  {
+  	return $this->belongsTo(\studyhub\Entities\Courses\Course::class);
+  }
 
-    protected $fillable = [
-    	'id', 'name', 'type', 'description', 'semester',
-    	'max_student', 'registered_student'
-    ];
+  public function user()
+  {
+    return $this->belongsTo(\studyhub\Entities\Users\User::class);
+  }
 
-    /**
-     * Each class only belongs to one course
-     * @return [type] [description]
-     */
-    public function course()
-    {
-    	return $this->belongsTo('studyhub\Entities\Courses\Course');
-    }
+  public function user_class()
+  {
+    return $this->hasMany(\studyhub\Entities\UserCLass::class, 'class_id');
+  }
 }

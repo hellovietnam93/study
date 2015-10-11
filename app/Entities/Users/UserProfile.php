@@ -26,8 +26,8 @@ class UserProfile extends Model
      * Each profile belongs only to one user
      * @return [type] [description]
      */
-    public function user()
-    {
-    	return $this->belongsTo('studyhub\Entities\Users\User', 'id', 'profile_id');
-    }
+    // public function user()
+    // {
+    // 	return $this->belongsTo('studyhub\Entities\Users\User', 'id', 'profile_id');
+    // }
 }

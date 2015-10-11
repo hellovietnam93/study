@@ -6,55 +6,30 @@ use Illuminate\Contracts\Bus\SelfHandling;
 
 class ModifyUserName extends Job implements SelfHandling
 {
-    protected $user, $oldUsername, $newUsername;
+  protected $user, $oldUsername, $newUsername;
+  public function __construct($user, $old_username, $new_username)
+  {
+    $this->user = $user;
+    $this->oldUsername = $old_username;
+    $this->newUsername = $new_username;
+  }
 
-    /**
-     * Create a new job instance.
-     *
-     * @param $user
-     * @param $old_username
-     * @param $new_username
-     */
-    public function __construct($user, $old_username, $new_username)
-    {
-        $this->user = $user;
-        $this->oldUsername = $old_username;
-        $this->newUsername = $new_username;
+  public function handle()
+  {
+    if ($this->areTheSameNames()) {
+      return false;
     }
+    return $this->setNewUsername();
+  }
 
-    /**
-     * Change account name.
-     *
-     * @return bool
-     */
-    public function handle()
-    {
-        if ($this->areTheSameNames()) {
-            return false;
-        }
+  protected function areTheSameNames()
+  {
+    return strcasecmp($this->oldUsername, $this->newUsername) == 0;
+  }
 
-        return $this->setNewUsername();
-    }
-
-    /**
-     * Check if the new username and old username are the same (case-sensitive).
-     *
-     * @return bool
-     */
-    protected function areTheSameNames()
-    {
-        return strcasecmp($this->oldUsername, $this->newUsername) == 0;
-    }
-
-    /**
-     * Set the new username for the user.
-     *
-     * @return bool
-     */
-    protected function setNewUsername()
-    {
-        $this->user->name = $this->newUsername;
-
-        return $this->user->save();
-    }
+  protected function setNewUsername()
+  {
+    $this->user->name = $this->newUsername;
+    return $this->user->save();
+  }
 }
