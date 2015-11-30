@@ -18,7 +18,7 @@
     <![endif]-->
   </head>
   <body>
-      @include('lecturer.layouts.nav')
+      @include('layouts.nav')
       <div class="body-wrapper">
         <div class="page-left">
           @include('flash::message')

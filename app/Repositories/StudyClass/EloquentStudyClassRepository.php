@@ -24,9 +24,9 @@ class EloquentStudyClassRepository extends EloquentRepository implements StudyCl
       'description' => $data['description'],
       'course_id' => $courseID,
       'type' => $data['type'],
-      'semester' => $data['semester'],
+      'semester_id' => $data['semester'],
       'max_student' => $data['max_student'],
-      'enroll_key' => str_random(8),
+      'enroll_key' => md5("{$data['id']}-{$courseID}"),
       'user_id' => get_by_key('user_id', $data)
     ]);
   }
@@ -36,7 +36,14 @@ class EloquentStudyClassRepository extends EloquentRepository implements StudyCl
     $course = Course::find($courseID);
 
     $StudyClass = $this->findClassByCourse($course, $id);
-    $StudyClass->update($data);
+    $StudyClass->update([
+      'id' => $data['id'],
+      'name' => $data['name'],
+      'description' => $data['description'],
+      'type' => $data['type'],
+      'semester_id' => $data['semester'],
+      'max_student' => $data['max_student'],
+    ]);
 
     return $StudyClass;
   }
@@ -130,5 +137,10 @@ class EloquentStudyClassRepository extends EloquentRepository implements StudyCl
     return $class->update([
       'user_id' => $user->id
     ]);
+  }
+
+  public function fetchSemesterUrgentClasses($semester_id)
+  {
+    return $this->model->where('semester_id', $semester_id)->get();
   }
 }

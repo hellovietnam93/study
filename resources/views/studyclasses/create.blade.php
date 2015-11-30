@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="form-wrapper">
-        {!! Form::open(['method' => 'POST', 'route' => ['admin::class.store', $course->id]]) !!}
+        {!! Form::open(['method' => 'POST', 'route' => ['class.store', $course->id]]) !!}
           <div class="form-group">
             {!! Form::label('id', trans('studyclass.field.id'), ['class' => 'control-label']) !!}
             {!! Form::text('id', null, ['class' => 'form-control input-lg']) !!}

@@ -17,4 +17,5 @@ interface StudyClassRepositoryInterface
   public function fetchAllClassOfLuctere($lucturer);
   public function fetchUsers($class);
   public function updateLecturer($class, $user);
+  public function fetchSemesterUrgentClasses($semester);
 }

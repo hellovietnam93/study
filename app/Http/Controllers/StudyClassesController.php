@@ -1,6 +1,6 @@
 <?php
 
-namespace studyhub\Http\Controllers\Admin;
+namespace studyhub\Http\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ use studyhub\Http\Requests\ClassRequest;
 
 class StudyClassesController extends Controller
 {
-  protected $studyclassRepo, $courseRepo, $userRepo;
+  protected $studyclassRepo, $courseRepo, $userRepo, $semesterRepo;
 
   public function __construct(CourseRepo $courseRepo, StudyClassRepo $studyclassRepo,
     UserRepo $userRepo, SemesterRepo $semesterRepo)
@@ -23,14 +23,13 @@ class StudyClassesController extends Controller
     $this->studyclassRepo = $studyclassRepo;
     $this->userRepo = $userRepo;
     $this->semesterRepo = $semesterRepo;
-    $this->middleware('auth');
   }
 
   public function index($courseID)
   {
     $course = $this->courseRepo->findById($courseID);
     $classes = $this->studyclassRepo->fetchCourseUrgentClasses($course);
-    return view('admin.studyclasses.index', compact('course', 'classes'));
+    return view('studyclasses.index', compact('course', 'classes'));
   }
 
   public function edit($courseID, $id)
@@ -38,7 +37,7 @@ class StudyClassesController extends Controller
     $course = $this->courseRepo->findById($courseID);
     $class = $this->studyclassRepo->findClassByCourse($course, $id);
     $semesters = $this->semesterRepo->getAll();
-    return view('admin.studyclasses.edit', compact('course', 'class', 'semesters'));
+    return view('studyclasses.edit', compact('course', 'class', 'semesters'));
   }
 
   public function update(ClassRequest $request, $courseID, $id)
@@ -46,38 +45,39 @@ class StudyClassesController extends Controller
     $course = $this->courseRepo->findById($courseID);
     $class = $this->studyclassRepo->update($request->all(), $course->id, $id);
     flash()->info(trans('controller.class_updated', ['class' => $id]));
-    return redirect()->route('admin::course.show', $course->id);
+    return redirect()->route('course.show', $courseID);
   }
 
   public function store(ClassRequest $request, $courseID)
   {
     $course = $this->courseRepo->findById($courseID);
-    $class = $this->studyclassRepo->create($request->except(['_token', '_method']), $course->id);
+    $request['user_id'] = auth()->user()->id;
+    $class = $this->studyclassRepo->create($request->except(['_token', '_method']),
+      $course->id);
     // event(new TaskHasPublished($author, $task));
     flash()->success(trans('controller.class_created'));
-    return redirect()->route('admin::course.show', $course->id);
+    return redirect()->route('course.show', $courseID);
   }
 
   public function create($courseID)
   {
-    $class = new \studyhub\Entities\Classes\StudyClass;
     $course = $this->courseRepo->findById($courseID);
     $semesters = $this->semesterRepo->getAll();
-    return view('admin.studyclasses.create', compact('class', 'course', 'semesters'));
+    return view('studyclasses.create', compact('course', 'semesters'));
   }
 
   public function show($courseID, $id)
   {
     $course = $this->courseRepo->findById($courseID);
     $class = $this->studyclassRepo->findClassByCourse($course, $id);
-    return view('admin.studyclasses.show', compact('course', 'class'));
+    $users = $this->studyclassRepo->fetchUsers($class);
+    return view('studyclasses.show', compact('course', 'class', 'users'));
   }
 
   public function destroy($courseID, $id)
   {
-    $course = $this->courseRepo->findById($courseID);
-    $this->studyclassRepo->softDelete($course->id, $id);
-    flash()->info(trans('admin.class_trashed'));
+    $this->studyclassRepo->softDelete($courseID, $id);
+    flash()->info(trans('lecturer.class_trashed'));
     return back();
   }
 }

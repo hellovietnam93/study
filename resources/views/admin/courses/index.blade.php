@@ -24,13 +24,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="pagelet-content">
-        <div class="row grid-view">
-          <div class="row-eq-height">
+      <div class="col-md-9">
+        <div class="class">
+          <table class="table table-bordered table-hover">
+            @include('admin.courses._header')
             @foreach($courses as $course)
               @include('admin.courses._course')
             @endforeach
-          </div>
+          </table>
         </div>
       </div>
     </div>

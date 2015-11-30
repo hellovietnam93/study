@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->string('activation_code', 100)->nullable();
-            $table->smallInteger('status');
+            $table->smallInteger('status')->nullable();
             $table->string('slug')->unique();
             // Columns for polymorphic relationship of User
             $table->rememberToken();

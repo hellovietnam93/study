@@ -11,10 +11,15 @@ class StudyClass extends Model
   protected $table = 'classes';
   protected $dates = ['deleted_at'];
   protected $fillable = [
-  	'id', 'name', 'type', 'description', 'semester',
+  	'id', 'name', 'type', 'description', 'semester_id',
   	'max_student', 'registered_student', 'course_id', 'enroll_key', 'user_id', 'key'
   ];
 
+
+  public function semester()
+  {
+    return $this->belongsTo(\studyhub\Entities\Semester::class);
+  }
 
   public function course()
   {

@@ -31,6 +31,7 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
       'email' => $credentials['email'],
       'password' => $credentials['password'],
       'activation_code' => str_random(100),
+      'status' => get_by_key('status', $credentials)
     ]);
   }
 
