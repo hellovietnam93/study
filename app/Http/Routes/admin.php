@@ -5,6 +5,10 @@ Route::group(['middleware' => ['auth', 'valid.roles:admin'], 'prefix' => 'admin'
   Route::group(['prefix' => 'course', 'as' => 'course'], function () {
     Route::post('uploads', ['as' => '.upload', 'uses' => 'CourseUploadsController@store']);
   });
+
+  Route::group(['prefix' => 'user', 'as' => 'user'], function () {
+    Route::post('uploads', ['as' => '.upload', 'uses' => 'DataUsersController@store']);
+  });
 });
 
 Route::group(['middleware' => ['auth', 'valid.roles:admin'], 'prefix' => 'admin',
@@ -49,6 +53,12 @@ Route::group(['middleware' => ['auth', 'valid.roles:admin'], 'prefix' => 'admin'
       'edit'    => 'admin::semester.edit',
       'update'  => 'admin::semester.update',
       'destroy' => 'admin::semester.destroy'
+    ]
+  ]);
+
+  Route::resource('user', 'DataUsersController', [
+    'names' => [
+      'index'   => 'admin::users'
     ]
   ]);
 });

@@ -14,7 +14,7 @@ return [
     'en_name' => 'English name',
     'abbr_name' => 'Abbr name',
     'language' => 'Language',
-    'evaludation' => 'Evaludation',
+    'evaluation' => 'Evaluation',
   ],
   'action' => [
     'enroll_class' => 'Vào lớp học',

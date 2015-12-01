@@ -3,6 +3,10 @@ namespace studyhub\Uploads;
 
 use Excel;
 use studyhub\Exceptions\MethodNotFoundException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+// use Illuminate\Support\Facades\File;
+use Storage;
+use File;
 class CSVUploader extends AbstractUploader
 {
   /**
@@ -13,22 +17,16 @@ class CSVUploader extends AbstractUploader
    */
   public function import($file, $repository)
   {
-    $encode = $this->getEncoding($file);
     Excel::filter('chunk')
-      ->load($file->getPathname(), $encode)
-      ->chunk(100, function ($reader) use ($repository, $encode) {
-        if (!method_exists($repository, 'create')) {
+      ->load($file->getPathname())
+      ->chunk(250, function ($reader) use ($repository) {
+        if (!method_exists($repository, 'import')) {
           throw new MethodNotFoundException;
         }
-        if ($encode === 'UTF-8') {
-          $reader->each(function ($userData) use ($repository) {
-              $repository->create($userData->toArray());
-          });
-        } else {
-          $reader->each(function ($userData) use ($repository) {
-              $repository->create($this->convertToUTF8($userData->toArray()));
-          });
-        }
+
+        $reader->each(function ($userData) use ($repository) {
+          $repository->import($userData->toArray());
+        });
       });
   }
 }

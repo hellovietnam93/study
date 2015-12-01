@@ -35,6 +35,14 @@ class RepositoryServiceProvider extends ServiceProvider
       \studyhub\Repositories\Semester\SemesterRepositoryInterface::class,
       \studyhub\Repositories\Semester\EloquentSemesterRepository::class
     );
+    $this->app->singleton(
+      \studyhub\Repositories\DataUser\DataUserRepositoryInterface::class,
+      \studyhub\Repositories\DataUser\EloquentDataUserRepository::class
+    );
+    $this->app->singleton(
+      \studyhub\Repositories\DataClass\DataClassRepositoryInterface::class,
+      \studyhub\Repositories\DataClass\EloquentDataClassRepository::class
+    );
   }
 
   public function provides()
@@ -45,6 +53,8 @@ class RepositoryServiceProvider extends ServiceProvider
       \studyhub\Repositories\StudyClass\StudyClassRepositoryInterface::class,
       \studyhub\Repositories\UserClass\UserClassRepositoryInterface::class,
       \studyhub\Repositories\Semester\SemesterRepositoryInterface::class,
+      \studyhub\Repositories\DataUser\DataUserRepositoryInterface::class,
+      \studyhub\Repositories\DataClass\DataClassRepositoryInterface::class,
     ];
   }
 }

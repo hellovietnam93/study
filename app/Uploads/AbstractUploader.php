@@ -2,6 +2,8 @@
 namespace studyhub\Uploads;
 use Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Carbon\Carbon;
+
 abstract class AbstractUploader
 {
   /**
@@ -19,10 +21,11 @@ abstract class AbstractUploader
    */
   public function moveFile(UploadedFile $file, $desiredPath)
   {
-    if ($file->isValid()) {
-      return $file->move($desiredPath, $file->getClientOriginalName());
-    }
-    return null;
+    $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+    $time = Carbon::now()->format('Y_m_d_H_i_s');
+    $extension = $file->getClientOriginalExtension();
+    $new_file_name = "{$file_name}_{$time}"."."."{$extension}";
+    return $file->move($desiredPath, $new_file_name);
   }
   /**
    * Upload file.
@@ -35,51 +38,5 @@ abstract class AbstractUploader
   {
     $file = Request::file($formKey);
     return $this->moveFile($file, $path);
-  }
-  /**
-   * Detect file encoding type.
-   *
-   * @param $string
-   * @return string
-   */
-  protected function detectEncoding($string)
-  {
-    return mb_detect_encoding($string, mb_list_encodings());
-  }
-  /**
-   * Get file encoding type.
-   *
-   * @param $file
-   * @return string
-   */
-  protected function getEncoding($file)
-  {
-    return $this->detectEncoding(file_get_contents(
-      $file, null, null, null, self::CHARACTER_READ
-    ));
-  }
-  /**
-   * Convert the given input (string, array, or object)
-   * to UTF-8 format.
-   *
-   * @param $input
-   * @return string
-   */
-  protected function convertToUTF8($input)
-  {
-    if (is_string($input)) {
-      $input = utf8_encode($input);
-    } else if (is_array($input)) {
-      foreach ($input as &$value) {
-          $this->convertToUTF8($value);
-      }
-      unset($value);
-    } else if (is_object($input)) {
-      $vars = array_keys(get_object_vars($input));
-      foreach ($vars as $var) {
-          $this->convertToUTF8($input->$var);
-      }
-    }
-    return $input;
   }
 }

@@ -21,7 +21,7 @@
       @include('layouts.nav')
       <div class="body-wrapper">
         <div class="page-left">
-          @include('flash::message')
+          @include('layouts.partials._flash_messages')
           @yield('content')
         </div>
 

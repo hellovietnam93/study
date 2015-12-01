@@ -82,4 +82,23 @@ class EloquentCourseRepository extends EloquentRepository implements CourseRepos
       ->where('slug', $slug)
       ->firstOrFail();
   }
+
+  public function import(array $credentials)
+  {
+    return $this->model->create([
+      'id' => $credentials['id'],
+      'name' => $credentials['name'],
+      'description' => $credentials['description'],
+      'credit' => $credentials['credit'],
+      'credit_fee' => $credentials['credit_fee'],
+      'theory_duration' => $credentials['theory_duration'],
+      'exercise_duration' => $credentials['exercise_duration'],
+      'practice_duration' => $credentials['practice_duration'],
+      'weight' => $credentials['weight'],
+      'en_name' => $credentials['en_name'],
+      'abbr_name' => $credentials['abbr_name'],
+      'language' => $credentials['language'],
+      'evaludation' => $credentials['evaludation']
+    ]);
+  }
 }

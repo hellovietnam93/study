@@ -13,4 +13,5 @@ interface CourseRepositoryInterface
   public function softDelete($id);
   public function forceDelete($slug);
   public function findDisabledCourseBySlug($slug);
+  public function import(array $credentials);
 }
